@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extentions\**" />
+    <Compile Remove="Model\**" />
+    <EmbeddedResource Remove="Extentions\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Extentions\**" />
+    <None Remove="Model\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayerLibrary\DataLayerLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
