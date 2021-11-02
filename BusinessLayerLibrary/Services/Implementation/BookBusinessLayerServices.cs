@@ -69,7 +69,7 @@ namespace BusinessLayerLibrary.Services.Implementation
         public async Task<Book> GetBook(int id)
         {
             var books = await _bookDataLayerServices.GetBook(id);
-            return _mapper.Map<BookDto>(books);
+            return books;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace DataLayerLibrary.Services.Implementation
 
         public async Task DeleteBook(int id)
         {
-            var findBook = _libraryDBContext.Books.Find(id);
+            var findBook = await _libraryDBContext.Books.FindAsync(id);
             if (findBook != null)
             {
                 _libraryDBContext.Remove(findBook);

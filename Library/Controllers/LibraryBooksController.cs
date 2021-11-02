@@ -22,6 +22,13 @@ namespace Library.Controllers
             _bookServices = bookServices;
         }
 
+        [HttpGet("/api/books")]
+        public ActionResult GetAllBooks()
+        {
+            var books = _bookServices.GetAllBooks();
+            return Ok(books);
+        }
+
         [HttpGet("/api/book/{id}")]
         public ActionResult GetBook(int id)
         {
