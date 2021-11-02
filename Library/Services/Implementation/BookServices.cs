@@ -39,9 +39,9 @@ namespace Library.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<Book> GetBook(int id)
+        public async Task<Book> GetBook(int id)
         {
-            var book = _bookBusinessLayerServices.GetBook(id);
+            var book = await _bookBusinessLayerServices.GetBook(id);
             return _mapper.Map<Book>(book);
         }
     }
