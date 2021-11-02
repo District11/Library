@@ -1,11 +1,15 @@
-﻿using System;
+﻿using DataLayerLibrary.Model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace BusinessLayerLibrary.DtoModel
 {
-    public class Book
+    public class BookDto
     {
+
         /// <summary>
         /// Идентификатор книги.
         /// </summary>

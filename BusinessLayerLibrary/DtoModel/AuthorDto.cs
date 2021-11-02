@@ -1,15 +1,13 @@
-﻿using System;
+﻿using DataLayerLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace BusinessLayerLibrary.DtoModel
 {
-    /// <summary>
-    /// Модель автора.
-    /// </summary>
-    public class Author
+    public class AuthorDto
     {
         /// <summary>
         /// Идентификатор автора.

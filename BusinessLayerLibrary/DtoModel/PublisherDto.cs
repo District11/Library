@@ -1,15 +1,16 @@
-﻿using System;
+﻿using DataLayerLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace BusinessLayerLibrary.DtoModel
 {
     /// <summary>
     /// Модель издателя.
     /// </summary>
-    public class Publisher
+    public class PublisherDto
     {
         /// <summary>
         /// Идентификатор издателя.
@@ -29,6 +30,6 @@ namespace DataLayerLibrary.Model
         /// <summary>
         /// Список книги у издателя
         /// </summary>
-        public List<Book> Books { get; set; }
+        public List<BookDto> Books { get; set; }
     }
 }

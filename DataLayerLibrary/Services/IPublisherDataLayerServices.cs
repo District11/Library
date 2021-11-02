@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.Services
+namespace DataLayerLibrary.Services
 {
-    public interface IPublisherServices
+    public interface IPublisherDataLayerServices
     {
         /// <summary>
         /// Метод для добавления издателя.

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace Library.Model
 {
     public class Book
     {
+
         /// <summary>
         /// Идентификатор книги.
         /// </summary>

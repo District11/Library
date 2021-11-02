@@ -1,20 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Extentions\**" />
     <Compile Remove="Model\**" />
-    <EmbeddedResource Remove="Extentions\**" />
     <EmbeddedResource Remove="Model\**" />
-    <None Remove="Extentions\**" />
     <None Remove="Model\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DataLayerLibrary\DataLayerLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
   </ItemGroup>
 
 </Project>

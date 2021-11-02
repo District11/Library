@@ -1,4 +1,5 @@
-﻿using DataLayerLibrary.Model;
+﻿using BusinessLayerLibrary.DtoModel;
+using DataLayerLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +11,26 @@ namespace BusinessLayerLibrary.Services
     /// <summary>
     /// Сервис для книги.
     /// </summary>
-    public interface IBookServices
+    public interface IBookBusinessLayerServices
     {
         /// <summary>
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        public void AddBook(Book book);
+        public void AddBook(BookDto book);
 
         /// <summary>
         /// Метод для получения книги.
         /// </summary>
         /// <param name="Id">Идентификатор книги</param>
         /// <returns></returns>
-        public Book GetBook(int Id);
+        public BookDto GetBook(int id);
 
         /// <summary>
         /// Метод для удаления книги.
         /// </summary>
         /// <param name="Id">Идентификатор книги</param>
-        public void DeleteBook(int Id);
+        public void DeleteBook(int id);
 
     }
 }

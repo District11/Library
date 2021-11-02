@@ -1,14 +1,11 @@
-﻿using System;
+﻿using DataLayerLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace Library.Model
 {
-    /// <summary>
-    /// Модель автора.
-    /// </summary>
     public class Author
     {
         /// <summary>

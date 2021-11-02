@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.Services
+namespace DataLayerLibrary.Services
 {
-    public interface IAuthorServices
+    public interface IAuthorDataLayerServices
     {
         /// <summary>
         /// Метод для добавления автора.
         /// </summary>
-        void AddAuthor();
+        void AddAuthor(Author author);
 
         /// <summary>
         /// Метод для получение информации об автору.
