@@ -14,23 +14,29 @@ namespace BusinessLayerLibrary.Services
     public interface IBookBusinessLayerServices
     {
         /// <summary>
+        /// Метод получения списка всех книнг
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<BookDto>> GetAllBooks();
+
+        /// <summary>
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        public void AddBook(BookDto book);
+        Task<bool> AddBook(BookDto book);
 
         /// <summary>
         /// Метод для получения книги.
         /// </summary>
-        /// <param name="Id">Идентификатор книги</param>
+        /// <param name="book">Идентификатор книги</param>
         /// <returns></returns>
-        public BookDto GetBook(int id);
+        Task<Book> GetBook(int id);
 
         /// <summary>
         /// Метод для удаления книги.
         /// </summary>
-        /// <param name="Id">Идентификатор книги</param>
-        public void DeleteBook(int id);
+        /// <param name="book">Идентификатор книги</param>
+        Task<bool> DeleteBook(int id);
 
     }
 }

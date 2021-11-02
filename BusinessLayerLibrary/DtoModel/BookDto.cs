@@ -18,7 +18,7 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public Author Author { get; set; }
+        public AuthorDto Author { get; set; }
 
         /// <summary>
         /// Название книги.
@@ -33,6 +33,6 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public Publisher Publisher { get; set; }
+        public PublisherDto Publisher { get; set; }
     }
 }

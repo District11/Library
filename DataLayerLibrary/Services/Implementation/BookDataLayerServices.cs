@@ -1,5 +1,6 @@
 ﻿using DataLayerLibrary;
 using DataLayerLibrary.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,29 +17,26 @@ namespace DataLayerLibrary.Services.Implementation
         {
             _libraryDBContext = libraryDBContext;
         }
-        public void AddBook(Book book)
+        public async Task AddBook(Book book)
         {
-            _libraryDBContext.Add(book);
-            _libraryDBContext.SaveChanges();
+            await _libraryDBContext.AddAsync(book);
+            await _libraryDBContext.SaveChangesAsync();
         }
 
-        public void DeleteBook(int Id)
+        public async Task DeleteBook(Book book)
         {
-            var findBook = _libraryDBContext.Books.Find(Id);
-            if(findBook != null)
-            {
-                _libraryDBContext.Remove(findBook);
-                _libraryDBContext.SaveChanges();
-            }
-            else
-            {
-                throw new InvalidOperationException("Невозможно удалить эту книгу!");
-            }
+            _libraryDBContext.Entry(book).State = EntityState.Deleted;
+            await _libraryDBContext.SaveChangesAsync();
         }
 
-        public Book GetBook(int Id)
+        public async Task<IEnumerable<Book>> GetAllBooks()
         {
-           return _libraryDBContext.Books.Find(Id);
+            return await _libraryDBContext.Books.ToListAsync();
+        }
+
+        public async Task<Book> GetBook(int id)
+        {
+            return await _libraryDBContext.Books.AsQueryable().Where(e => e.Id == id).FirstOrDefaultAsync();
         }
     }
 }

@@ -46,12 +46,12 @@ namespace Library
             });
             services.AddBusinessLayerCollection();
             services.AddDataLayerExtentions();
-            services.AddScoped<IAuthorBusinessLayerServices, AuthorBusinessLayerServices>();
+            //services.AddScoped<IAuthorBusinessLayerServices, AuthorBusinessLayerServices>();
             services.AddScoped<IBookBusinessLayerServices, BookBusinessLayerServices>();
-            services.AddScoped<IPublisherBusinessLayerServices, PublisherBusinessLayerServices>();
-            services.AddScoped<IPublisherDataLayerServices, PublisherDataLayerServices>();
+          //  services.AddScoped<IPublisherBusinessLayerServices, PublisherBusinessLayerServices>();
+          //  services.AddScoped<IPublisherDataLayerServices, PublisherDataLayerServices>();
             services.AddScoped<IBookDataLayerServices, BookDataLayerServices>();
-            services.AddScoped<IAuthorDataLayerServices, AuthorDataLayerServices>();
+          //  services.AddScoped<IAuthorDataLayerServices, AuthorDataLayerServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,23 +13,29 @@ namespace DataLayerLibrary.Services
     public interface IBookDataLayerServices
     {
         /// <summary>
+        /// Метод получения списка всех книнг
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<Book>> GetAllBooks();
+
+        /// <summary>
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        public void AddBook(Book book);
+        Task AddBook(Book book);
 
         /// <summary>
         /// Метод для получения книги.
         /// </summary>
-        /// <param name="Id">Идентификатор книги</param>
+        /// <param name="id">Идентификатор книги</param>
         /// <returns></returns>
-        public Book GetBook(int Id);
+        Task<Book> GetBook(int id);
 
         /// <summary>
         /// Метод для удаления книги.
         /// </summary>
-        /// <param name="Id">Идентификатор книги</param>
-        public void DeleteBook(int Id);
+        /// <param name="id">Идентификатор книги</param>
+        Task DeleteBook(Book book);
 
     }
 }

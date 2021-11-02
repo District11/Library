@@ -22,19 +22,54 @@ namespace BusinessLayerLibrary.Services.Implementation
             _bookDataLayerServices = bookDataLayerServices;
             _mapper = mapper;
         }
-        public void AddBook(BookDto book)
+
+        public async Task<bool> AddBook(BookDto book)
         {
-            bookBusinessLayerServices.AddBook(book);
+            try
+            {
+                await _bookDataLayerServices.AddBook(new Book
+                {
+                    Id = book.Id,
+                    //Author = book.AuthorDto.Id,
+                    Name = book.Name,
+                    Count = book.Count,
+                    //Publisher = book.Publisher
+                });
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Что-то пошло не так");
+                return false;
+            }
+            
         }
 
-        public void DeleteBook(int id)
+        public async Task<bool> DeleteBook(int id)
         {
-            _bookDataLayerServices.DeleteBook(id);
+            try
+            {
+                var book = _bookDataLayerServices.GetBook(id);
+                await _bookDataLayerServices.DeleteBook(book);
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Что-то пошло не так");
+                return false;
+            }
         }
 
-        public BookDto GetBook(int id)
+        public async Task<IEnumerable<BookDto>> GetAllBooks()
         {
-            return _bookDataLayerServices.GetBook(id);
+            var books = await _bookDataLayerServices.GetAllBooks();
+            return books.Select(e => _mapper.Map<BookDto>(e));
+        }
+
+        public async Task<Book> GetBook(int id)
+        {
+            var books = await _bookDataLayerServices.GetBook(id);
+            return _mapper.Map<BookDto>(books);
         }
     }
 }

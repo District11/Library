@@ -8,9 +8,9 @@ namespace DataLayerLibrary.Extentions
     {
         public static IServiceCollection AddDataLayerExtentions(this IServiceCollection service)
         {
-            service.AddScoped<IAuthorDataLayerServices, AuthorDataLayerServices>();
+           // service.AddScoped<IAuthorDataLayerServices, AuthorDataLayerServices>();
             service.AddScoped<IBookDataLayerServices, BookDataLayerServices>();
-            service.AddScoped<IPublisherDataLayerServices, PublisherDataLayerServices>();
+          //  service.AddScoped<IPublisherDataLayerServices, PublisherDataLayerServices>();
             return service;
         }
     }
