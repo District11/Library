@@ -23,10 +23,18 @@ namespace DataLayerLibrary.Services.Implementation
             await _libraryDBContext.SaveChangesAsync();
         }
 
-        public async Task DeleteBook(Book book)
+        public async Task DeleteBook(int id)
         {
-            _libraryDBContext.Entry(book).State = EntityState.Deleted;
-            await _libraryDBContext.SaveChangesAsync();
+            var findBook = _libraryDBContext.Books.Find(id);
+            if (findBook != null)
+            {
+                _libraryDBContext.Remove(findBook);
+                _libraryDBContext.SaveChanges();
+            }
+            else
+            {
+                throw new InvalidOperationException("Невозможно удалить эту книгу!");
+            }
         }
 
         public async Task<IEnumerable<Book>> GetAllBooks()

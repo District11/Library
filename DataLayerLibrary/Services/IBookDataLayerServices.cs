@@ -35,7 +35,7 @@ namespace DataLayerLibrary.Services
         /// Метод для удаления книги.
         /// </summary>
         /// <param name="id">Идентификатор книги</param>
-        Task DeleteBook(Book book);
+        Task DeleteBook(int id);
 
     }
 }

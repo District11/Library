@@ -50,7 +50,7 @@ namespace BusinessLayerLibrary.Services.Implementation
             try
             {
                 var book = _bookDataLayerServices.GetBook(id);
-                await _bookDataLayerServices.DeleteBook(book);
+                await _bookDataLayerServices.DeleteBook(id);
                 return true;
             }
             catch
