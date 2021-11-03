@@ -8,9 +8,24 @@ namespace BusinessLayerLibrary.DtoModel
 {
     public enum SortedModelDto
     {
-        NameBookSorted, //Сортировка по наименованию книги
-        CityPublisherSorted, // Сортировка по городу издателя
-        CountPagesSorted, //Сортировка по колличеству страниц в книге
-        LastNameSorted //Сортировка по Фамилии
+        /// <summary>
+        /// Сортировка по наименованию книги.
+        /// </summary>
+        NameBookSorted,
+
+        /// <summary>
+        /// Сортировка по городу издателя
+        /// </summary>
+        CityPublisherSorted,
+
+        /// <summary>
+        /// Сортировка по колличеству страниц в книге
+        /// </summary>
+        CountPagesSorted,
+
+        /// <summary>
+        /// Сортировка по Фамилии
+        /// </summary>
+        LastNameSorted
     }
 }
