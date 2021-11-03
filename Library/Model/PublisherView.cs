@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Library.Model
 {
-    public class Publisher
+    public class PublisherView
     {
         /// <summary>
         /// Идентификатор издателя.
@@ -25,6 +25,6 @@ namespace Library.Model
         /// <summary>
         /// Список книги у издателя
         /// </summary>
-        public List<Book> Books { get; set; }
+        public List<BookView> Books { get; set; }
     }
 }

@@ -12,18 +12,25 @@ namespace Library.Mapper
     {
         public LibraryProfile()
         {
-            CreateMap<Book, BookDto>();
+            CreateMap<BookView, BookDto>();
 
-            CreateMap<BookDto, Book>();
+            CreateMap<BookDto, BookView>();
 
-            CreateMap<Author, AuthorDto>();
+            CreateMap<AuthorView, AuthorDto>();
 
-            CreateMap<AuthorDto, Author>();
+            CreateMap<AuthorDto, AuthorView>();
 
-            CreateMap<Publisher, PublisherDto>();
+            CreateMap<PublisherView, PublisherDto>();
 
-            CreateMap<PublisherDto, Publisher>();
+            CreateMap<PublisherDto, PublisherView>();
 
+            CreateMap<SortedModelView, SortedModelDto>();
+
+            CreateMap<SortedModelDto, SortedModelView>();
+
+            CreateMap<PagingView, PagingDto>();
+
+            CreateMap<PagingDto, PagingView>();
         }
     }
 }

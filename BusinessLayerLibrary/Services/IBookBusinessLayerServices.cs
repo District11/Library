@@ -17,7 +17,7 @@ namespace BusinessLayerLibrary.Services
         /// Метод получения списка всех книнг
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<BookDto>> GetAllBooks();
+        Task<IEnumerable<BookDto>> GetAllBooks(int pageSize, int pageNumber);
 
         /// <summary>
         /// Метод для добавления книги.
@@ -37,6 +37,13 @@ namespace BusinessLayerLibrary.Services
         /// </summary>
         /// <param name="book">Идентификатор книги</param>
         Task<bool> DeleteBook(int id);
+
+        /// <summary>
+        /// Метод для сортировки библеотеки по параметрам
+        /// </summary>
+        /// <param name="sortedModel">Данные сортировки</param>
+        /// <returns></returns>
+        Task Sorted(SortedModelDto sortedModel);
 
     }
 }

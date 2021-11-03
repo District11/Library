@@ -20,6 +20,14 @@ namespace BusinessLayerLibrary.Mapper
 
             CreateMap<PublisherDto, Publisher>();
 
+            CreateMap<SortedModel, SortedModelDto>();
+
+            CreateMap<SortedModelDto, SortedModel>();
+
+            CreateMap<Paging, PagingDto>();
+
+            CreateMap<PagingDto, Paging>();
+
         }
     }
 }

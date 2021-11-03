@@ -2,6 +2,7 @@
 using BusinessLayerLibrary.Services;
 using BusinessLayerLibrary.Services.Implementation;
 using DataLayerLibrary.Model;
+using Library.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -49,6 +50,13 @@ namespace Library.Controllers
         {
             _bookServices.AddBook(book);
             return Ok();
+        }
+
+        [HttpGet("api/book/sorted/{sortedModelView}")]
+        public ActionResult SortedLibrary(SortedModelDto sortedModelDto)
+        {
+            var library = _bookServices.Sorted(sortedModelDto);
+            return Ok(library);
         }
     }
 }

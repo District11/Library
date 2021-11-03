@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Model
 {
-    public class Author
+    public class AuthorView
     {
         /// <summary>
         /// Идентификатор автора.
@@ -41,6 +41,6 @@ namespace Library.Model
         /// <summary>
         /// Список книг.
         /// </summary>
-        public List<Book> ListBooks { get; set; }
+        public List<BookView> ListBooks { get; set; }
     }
 }

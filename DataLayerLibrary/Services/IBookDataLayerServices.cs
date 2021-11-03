@@ -16,7 +16,7 @@ namespace DataLayerLibrary.Services
         /// Метод получения списка всех книнг
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Book>> GetAllBooks();
+        Task<IEnumerable<Book>> GetAllBooks(int pageSizeint, int pageNumber);
 
         /// <summary>
         /// Метод для добавления книги.
@@ -37,5 +37,8 @@ namespace DataLayerLibrary.Services
         /// <param name="id">Идентификатор книги</param>
         Task DeleteBook(int id);
 
+        public Task Sorted(SortedModel sortedModel);
+
+        public Task 
     }
 }

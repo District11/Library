@@ -12,25 +12,27 @@ namespace Library.Services
         /// Метод получения списка всех книнг
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Book>> GetAllBooks();
+        Task<IEnumerable<BookView>> GetAllBooks();
 
         /// <summary>
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        Task<bool> AddBook(Book book);
+        Task<bool> AddBook(BookView book);
 
         /// <summary>
         /// Метод для получения книги.
         /// </summary>
         /// <param name="id">Идентификатор книги</param>
         /// <returns></returns>
-        Task<Book> GetBook(int id);
+        Task<BookView> GetBook(int id);
 
         /// <summary>
         /// Метод для удаления книги.
         /// </summary>
         /// <param name="id">Идентификатор книги</param>
         Task<bool> DeleteBook(int id);
+
+        public Task Sorted(SortedModelView sortedModel);
     }
 }

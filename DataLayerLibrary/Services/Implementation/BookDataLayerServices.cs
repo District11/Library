@@ -1,5 +1,4 @@
-﻿using DataLayerLibrary;
-using DataLayerLibrary.Model;
+﻿using DataLayerLibrary.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -37,14 +36,28 @@ namespace DataLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooks()
+        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber)
         {
-            return await _libraryDBContext.Books.ToListAsync();
+            return await _libraryDBContext.Books.Skip(pageSize*(pageNumber - 1)).Take(pageSize).ToListAsync();
         }
 
         public async Task<Book> GetBook(int id)
         {
             return await _libraryDBContext.Books.AsQueryable().Where(e => e.Id == id).FirstOrDefaultAsync();
+        }
+
+        public Task Sorted(SortedModel sortedModel)
+        {
+
+            IQueryable<Book> books = _libraryDBContext.Books;
+            books = sortedModel switch
+            {
+                SortedModel.NameBookSorted => books.OrderBy(b => b.Name),
+                SortedModel.CountPagesSorted => books.OrderBy(b => b.Count),
+                SortedModel.LastNameSorted => books.OrderBy(b => b.Author.LastName),
+                SortedModel.CityPublisherSorted => books.OrderBy(b => b.Publisher.City)
+            };
+            return books.AsNoTracking().ToListAsync();
         }
     }
 }

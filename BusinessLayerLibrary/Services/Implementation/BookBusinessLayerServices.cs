@@ -30,7 +30,7 @@ namespace BusinessLayerLibrary.Services.Implementation
                 await _bookDataLayerServices.AddBook(new Book
                 {
                     Id = book.Id,
-                    //Author = book.AuthorDto.Id,
+                    //Author = book.Author {ne}
                     Name = book.Name,
                     Count = book.Count,
                     //Publisher = book.Publisher
@@ -42,7 +42,7 @@ namespace BusinessLayerLibrary.Services.Implementation
                 Console.WriteLine("Что-то пошло не так");
                 return false;
             }
-            
+
         }
 
         public async Task<bool> DeleteBook(int id)
@@ -60,9 +60,9 @@ namespace BusinessLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<BookDto>> GetAllBooks()
+        public async Task<IEnumerable<BookDto>> GetAllBooks(int pageSize, int pageNumber)
         {
-            var books = await _bookDataLayerServices.GetAllBooks();
+            var books = await _bookDataLayerServices.GetAllBooks(pageSize, pageNumber);
             return books.Select(e => _mapper.Map<BookDto>(e));
         }
 
@@ -70,6 +70,12 @@ namespace BusinessLayerLibrary.Services.Implementation
         {
             var books = await _bookDataLayerServices.GetBook(id);
             return books;
+        }
+
+        public Task Sorted(SortedModelDto sortedModelDto)
+        {
+            var librarySorted = _bookDataLayerServices.Sorted(_mapper.Map<SortedModel>(sortedModelDto));
+            return librarySorted;
         }
     }
 }

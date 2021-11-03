@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Library.Model
 {
-    public class Book
+    public class BookView
     {
 
         /// <summary>
@@ -16,7 +16,7 @@ namespace Library.Model
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public Author Author { get; set; }
+        public AuthorView Author { get; set; }
 
         /// <summary>
         /// Название книги.
@@ -31,6 +31,6 @@ namespace Library.Model
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public Publisher Publisher { get; set; }
+        public PublisherView Publisher { get; set; }
     }
 }

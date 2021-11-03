@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLayerLibrary.DtoModel;
 using BusinessLayerLibrary.Services;
+using DataLayerLibrary.Model;
 using Library.Model;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Library.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<bool> AddBook(Book book)
+        public async Task<bool> AddBook(BookView book)
         {
             var addBook = _mapper.Map<BookDto>(book);
             await _bookBusinessLayerServices.AddBook(addBook);
@@ -34,15 +35,21 @@ namespace Library.Services.Implementation
             return true;
         }
 
-        public Task<IEnumerable<Book>> GetAllBooks()
+        public Task<IEnumerable<BookView>> GetAllBooks()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Book> GetBook(int id)
+        public async Task<BookView> GetBook(int id)
         {
             var book = await _bookBusinessLayerServices.GetBook(id);
-            return _mapper.Map<Book>(book);
+            return _mapper.Map<BookView>(book);
+        }
+
+        public Task Sorted(SortedModelView sortedModelView)
+        {
+            var library = _bookBusinessLayerServices.Sorted(_mapper.Map<SortedModelDto>(sortedModelView));
+            return library;
         }
     }
 }
