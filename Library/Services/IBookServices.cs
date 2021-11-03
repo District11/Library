@@ -12,7 +12,7 @@ namespace Library.Services
         /// Метод получения списка всех книнг
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<BookView>> GetAllBooks();
+        Task<IEnumerable<BookView>> GetAllBooks(int pageSizeint, int pageNumber);
 
         /// <summary>
         /// Метод для добавления книги.
@@ -33,6 +33,6 @@ namespace Library.Services
         /// <param name="id">Идентификатор книги</param>
         Task<bool> DeleteBook(int id);
 
-        public Task Sorted(SortedModelView sortedModel);
+        Task Sorted(SortedModelView sortedModelView);
     }
 }

@@ -13,7 +13,7 @@ namespace DataLayerLibrary.Services
     public interface IBookDataLayerServices
     {
         /// <summary>
-        /// Метод получения списка всех книнг
+        /// Метод получения списка всех книнг.
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<Book>> GetAllBooks(int pageSizeint, int pageNumber);
@@ -21,24 +21,28 @@ namespace DataLayerLibrary.Services
         /// <summary>
         /// Метод для добавления книги.
         /// </summary>
-        /// <param name="book">Книга</param>
+        /// <param name="book">Книга.</param>
         Task AddBook(Book book);
 
         /// <summary>
         /// Метод для получения книги.
         /// </summary>
-        /// <param name="id">Идентификатор книги</param>
+        /// <param name="id">Идентификатор книги.</param>
         /// <returns></returns>
         Task<Book> GetBook(int id);
 
         /// <summary>
         /// Метод для удаления книги.
         /// </summary>
-        /// <param name="id">Идентификатор книги</param>
+        /// <param name="id">Идентификатор книги.</param>
         Task DeleteBook(int id);
 
+        /// <summary>
+        /// Метод сортировки библтоеки по параметрам.
+        /// </summary>
+        /// <param name="sortedModel">Параметр сортировки.</param>
+        /// <returns></returns>
         public Task Sorted(SortedModel sortedModel);
 
-        public Task 
     }
 }

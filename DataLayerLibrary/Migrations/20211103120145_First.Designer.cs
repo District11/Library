@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataLayerLibrary.Migrations
 {
     [DbContext(typeof(LibraryDBContext))]
-    [Migration("20211102095434_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20211103120145_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,25 +47,17 @@ namespace DataLayerLibrary.Migrations
 
             modelBuilder.Entity("DataLayerLibrary.Model.AuthorBook", b =>
                 {
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("AuthorId1")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("integer");
+                    b.HasKey("BookId", "AuthorId");
 
-                    b.HasKey("AuthorId", "BookId");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("AuthorId1");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("AuthorBook");
+                    b.ToTable("AuthorBooks");
                 });
 
             modelBuilder.Entity("DataLayerLibrary.Model.Book", b =>
@@ -74,9 +66,6 @@ namespace DataLayerLibrary.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("integer");
 
                     b.Property<int>("Count")
                         .HasColumnType("integer");
@@ -87,16 +76,9 @@ namespace DataLayerLibrary.Migrations
                     b.Property<int?>("PublisherId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PublisherId1")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasIndex("PublisherId");
-
-                    b.HasIndex("PublisherId1");
 
                     b.ToTable("Books");
                 });
@@ -122,17 +104,13 @@ namespace DataLayerLibrary.Migrations
             modelBuilder.Entity("DataLayerLibrary.Model.AuthorBook", b =>
                 {
                     b.HasOne("DataLayerLibrary.Model.Author", "Author")
-                        .WithMany()
+                        .WithMany("AuthorBooks")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataLayerLibrary.Model.Author", null)
-                        .WithMany("AuthorBooks")
-                        .HasForeignKey("AuthorId1");
-
                     b.HasOne("DataLayerLibrary.Model.Book", "Book")
-                        .WithMany()
+                        .WithMany("AuthorBooks")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -144,19 +122,9 @@ namespace DataLayerLibrary.Migrations
 
             modelBuilder.Entity("DataLayerLibrary.Model.Book", b =>
                 {
-                    b.HasOne("DataLayerLibrary.Model.Author", "Author")
-                        .WithMany("ListBooks")
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("DataLayerLibrary.Model.Publisher", null)
+                    b.HasOne("DataLayerLibrary.Model.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId");
-
-                    b.HasOne("DataLayerLibrary.Model.Publisher", "Publisher")
-                        .WithMany()
-                        .HasForeignKey("PublisherId1");
-
-                    b.Navigation("Author");
 
                     b.Navigation("Publisher");
                 });
@@ -164,8 +132,11 @@ namespace DataLayerLibrary.Migrations
             modelBuilder.Entity("DataLayerLibrary.Model.Author", b =>
                 {
                     b.Navigation("AuthorBooks");
+                });
 
-                    b.Navigation("ListBooks");
+            modelBuilder.Entity("DataLayerLibrary.Model.Book", b =>
+                {
+                    b.Navigation("AuthorBooks");
                 });
 
             modelBuilder.Entity("DataLayerLibrary.Model.Publisher", b =>

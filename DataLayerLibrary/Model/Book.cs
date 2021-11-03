@@ -12,9 +12,9 @@ namespace DataLayerLibrary.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Автор книги.
+        /// Список авторов книги.
         /// </summary>
-        public Author Author { get; set; }
+        public List<AuthorBook> AuthorBooks { get; set; }
 
         /// <summary>
         /// Название книги.

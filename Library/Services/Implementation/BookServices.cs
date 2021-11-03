@@ -35,11 +35,18 @@ namespace Library.Services.Implementation
             return true;
         }
 
-        public Task<IEnumerable<BookView>> GetAllBooks()
+        public Task<IEnumerable<BookView>> GetAllBooks(int pageSizeint, int pageNumber)
         {
             throw new NotImplementedException();
         }
 
+        /*  public Task<IEnumerable<BookView>> GetAllBooks(int pageSize, int pageNumber)
+          {
+              var library = _bookBusinessLayerServices.GetAllBooks(pageSize, pageNumber);
+              //return _mapper.Map<BookView>(library/);
+
+          }
+        */
         public async Task<BookView> GetBook(int id)
         {
             var book = await _bookBusinessLayerServices.GetBook(id);

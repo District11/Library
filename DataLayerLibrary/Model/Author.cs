@@ -40,10 +40,5 @@ namespace DataLayerLibrary.Model
         /// Список авторов книги.
         /// </summary>
         public List<AuthorBook> AuthorBooks { get; set; }
-
-        /// <summary>
-        /// Список книг.
-        /// </summary>
-        public List<Book> ListBooks { get; set; }
     }
 }

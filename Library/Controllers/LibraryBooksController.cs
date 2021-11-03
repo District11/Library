@@ -24,9 +24,9 @@ namespace Library.Controllers
         }
 
         [HttpGet("/api/books")]
-        public ActionResult GetAllBooks()
+        public ActionResult GetAllBooks(int pageSize, int pageNumber)
         {
-            var books = _bookServices.GetAllBooks();
+            var books = _bookServices.GetAllBooks(pageSize, pageNumber);
             return Ok(books);
         }
 

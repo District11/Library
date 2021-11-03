@@ -54,7 +54,7 @@ namespace DataLayerLibrary.Services.Implementation
             {
                 SortedModel.NameBookSorted => books.OrderBy(b => b.Name),
                 SortedModel.CountPagesSorted => books.OrderBy(b => b.Count),
-                SortedModel.LastNameSorted => books.OrderBy(b => b.Author.LastName),
+                SortedModel.LastNameSorted => books.OrderBy(b => b.AuthorBooks),
                 SortedModel.CityPublisherSorted => books.OrderBy(b => b.Publisher.City)
             };
             return books.AsNoTracking().ToListAsync();
