@@ -12,12 +12,12 @@ namespace BusinessLayerLibrary.Extentions
     {
         public static IServiceCollection AddBusinessLayerCollection(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(LibraryProfile).Assembly);
+           /* services.AddAutoMapper(typeof(LibraryProfile).Assembly);
            // services.AddScoped<IAuthorBusinessLayerServices, AuthorBusinessLayerServices>();
             services.AddScoped<IBookBusinessLayerServices, BookBusinessLayerServices>();
             //services.AddScoped<IPublisherBusinessLayerServices, PublisherBusinessLayerServices>();
 
-            return services;
+            return services;*/
         }
     }
 }
