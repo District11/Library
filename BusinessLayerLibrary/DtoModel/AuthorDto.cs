@@ -42,6 +42,6 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Список книг.
         /// </summary>
-        public List<BookDto> ListBooks { get; set; }
+        public List<GetBookDto> ListBooks { get; set; }
     }
 }

@@ -18,10 +18,6 @@ namespace DataLayerLibrary.Services.Implementation
         }
         public async Task CreateBook(Book book)
         {
-            var author = _libraryDBContext.AuthorBooks.Include(a => a.Author).ToListAsync();
-            var publisher = _libraryDBContext.Books.Include(p => p.Publisher);
-
-
             await _libraryDBContext.AddAsync(book);
             await _libraryDBContext.SaveChangesAsync();
         }

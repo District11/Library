@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary.DtoModel
 {
-    public class BookDto
+    /// <summary>
+    /// Dto для получения сущности книги.
+    /// </summary>
+    public class GetBookDto
     {
-
         /// <summary>
         /// Идентификатор книги.
         /// </summary>

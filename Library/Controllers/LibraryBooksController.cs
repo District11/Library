@@ -38,7 +38,7 @@ namespace Library.Controllers
         
 
         [HttpPost("/api/book")]
-        public ActionResult CreateBook(BookDto book)
+        public ActionResult CreateBook(CreateBookDto book)
         {
             _bookServices.CreateBook(book);
             return Ok();

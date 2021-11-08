@@ -23,14 +23,17 @@ namespace BusinessLayerLibrary.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateBook(BookDto book)
+        public async Task<bool> CreateBook(CreateBookDto book)
         {
             try
             {
 
                 await _bookDataLayerServices.CreateBook(new Book
                 {
-                    Id = book.Id
+                    Name = book.Name, 
+                    NumberOfPage = book.NumberOfPage,
+                    PublisherId = book.PublisherId,
+                  
                 });
                 return true;
             }
@@ -57,10 +60,10 @@ namespace BusinessLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<BookDto>> GetAllBooks(int pageSize, int pageNumber)
+        public async Task<IEnumerable<GetBookDto>> GetAllBooks(int pageSize, int pageNumber)
         {
             var books = await _bookDataLayerServices.GetAllBooks(pageSize, pageNumber);
-            return books.Select(e => _mapper.Map<BookDto>(e));
+            return books.Select(e => _mapper.Map<GetBookDto>(e));
         }
 
         public async Task<Book> GetBook(int id)

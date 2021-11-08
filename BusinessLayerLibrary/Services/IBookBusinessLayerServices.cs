@@ -17,13 +17,13 @@ namespace BusinessLayerLibrary.Services
         /// Метод получения списка всех книнг
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<BookDto>> GetAllBooks(int pageSize, int pageNumber);
+        Task<IEnumerable<GetBookDto>> GetAllBooks(int pageSize, int pageNumber);
 
         /// <summary>
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        Task<bool> CreateBook(BookDto book);
+        Task<bool> CreateBook(CreateBookDto book);
 
         /// <summary>
         /// Метод для получения книги.

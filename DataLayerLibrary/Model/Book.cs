@@ -14,7 +14,7 @@ namespace DataLayerLibrary.Model
         /// <summary>
         /// Список авторов книги.
         /// </summary>
-        public List<AuthorBook> AuthorBooks { get; set; }
+        public IList<AuthorBook> AuthorBooks { get; set; }
 
         /// <summary>
         /// Название книги.
@@ -30,5 +30,10 @@ namespace DataLayerLibrary.Model
         /// Автор книги.
         /// </summary>
         public Publisher Publisher { get; set; }
+
+        /// <summary>
+        /// ID издательства
+        /// </summary>
+        public int PublisherId { get; set; }
     }
 }
