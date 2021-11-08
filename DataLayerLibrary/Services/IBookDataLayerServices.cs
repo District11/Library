@@ -22,7 +22,7 @@ namespace DataLayerLibrary.Services
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга.</param>
-        Task AddBook(Book book);
+        Task CreateBook(Book book);
 
         /// <summary>
         /// Метод для получения книги.

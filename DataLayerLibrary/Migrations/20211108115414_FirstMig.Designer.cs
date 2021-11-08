@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataLayerLibrary.Migrations
 {
     [DbContext(typeof(LibraryDBContext))]
-    [Migration("20211103120145_First")]
-    partial class First
+    [Migration("20211108115414_FirstMig")]
+    partial class FirstMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,11 +67,11 @@ namespace DataLayerLibrary.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("Count")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
+
+                    b.Property<int>("NumberOfPage")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("PublisherId")
                         .HasColumnType("integer");

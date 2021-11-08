@@ -23,17 +23,14 @@ namespace BusinessLayerLibrary.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<bool> AddBook(BookDto book)
+        public async Task<bool> CreateBook(BookDto book)
         {
             try
             {
-                await _bookDataLayerServices.AddBook(new Book
+
+                await _bookDataLayerServices.CreateBook(new Book
                 {
-                    Id = book.Id,
-                    //Author = book.Author {ne}
-                    Name = book.Name,
-                    Count = book.Count,
-                    //Publisher = book.Publisher
+                    Id = book.Id
                 });
                 return true;
             }

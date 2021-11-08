@@ -16,8 +16,12 @@ namespace DataLayerLibrary.Services.Implementation
         {
             _libraryDBContext = libraryDBContext;
         }
-        public async Task AddBook(Book book)
+        public async Task CreateBook(Book book)
         {
+            var author = _libraryDBContext.AuthorBooks.Include(a => a.Author).ToListAsync();
+            var publisher = _libraryDBContext.Books.Include(p => p.Publisher);
+
+
             await _libraryDBContext.AddAsync(book);
             await _libraryDBContext.SaveChangesAsync();
         }
@@ -53,7 +57,7 @@ namespace DataLayerLibrary.Services.Implementation
             books = sortedModel switch
             {
                 SortedModel.NameBookSorted => books.OrderBy(b => b.Name),
-                SortedModel.CountPagesSorted => books.OrderBy(b => b.Count),
+                SortedModel.CountPagesSorted => books.OrderBy(b => b.NumberOfPage),
                 SortedModel.LastNameSorted => books.OrderBy(b => b.AuthorBooks),
                 SortedModel.CityPublisherSorted => books.OrderBy(b => b.Publisher.City)
             };

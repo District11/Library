@@ -65,11 +65,11 @@ namespace DataLayerLibrary.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("Count")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
+
+                    b.Property<int>("NumberOfPage")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("PublisherId")
                         .HasColumnType("integer");

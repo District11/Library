@@ -1,4 +1,3 @@
-using BusinessLayerLibrary.Extentions;
 using BusinessLayerLibrary.Services;
 using BusinessLayerLibrary.Services.Implementation;
 using DataLayerLibrary;
@@ -7,18 +6,11 @@ using DataLayerLibrary.Services;
 using DataLayerLibrary.Services.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library
 {
@@ -44,14 +36,9 @@ namespace Library
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library", Version = "v1" });
             });
-            services.AddBusinessLayerCollection();
             services.AddDataLayerExtentions();
-            //services.AddScoped<IAuthorBusinessLayerServices, AuthorBusinessLayerServices>();
             services.AddScoped<IBookBusinessLayerServices, BookBusinessLayerServices>();
-          //  services.AddScoped<IPublisherBusinessLayerServices, PublisherBusinessLayerServices>();
-          //  services.AddScoped<IPublisherDataLayerServices, PublisherDataLayerServices>();
             services.AddScoped<IBookDataLayerServices, BookDataLayerServices>();
-          //  services.AddScoped<IAuthorDataLayerServices, AuthorDataLayerServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

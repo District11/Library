@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLayerLibrary.DtoModel;
-using Library.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using DataLayerLibrary.Model;
 
 namespace Library.Mapper
 {
@@ -12,25 +8,12 @@ namespace Library.Mapper
     {
         public LibraryProfile()
         {
-            CreateMap<BookView, BookDto>();
-
-            CreateMap<BookDto, BookView>();
-
-            CreateMap<AuthorView, AuthorDto>();
-
-            CreateMap<AuthorDto, AuthorView>();
-
-            CreateMap<PublisherView, PublisherDto>();
-
-            CreateMap<PublisherDto, PublisherView>();
-
-            CreateMap<SortedModelView, SortedModelDto>();
-
-            CreateMap<SortedModelDto, SortedModelView>();
-
-            CreateMap<PagingView, PagingDto>();
-
-            CreateMap<PagingDto, PagingView>();
+            CreateMap<BookDto, Book>()
+                .ForMember(dto => dto.Id, o1 => o1.MapFrom(o2=> o2.Id))
+                .ForMember(dto => dto.Name, o1 => o1.MapFrom(o2=> o2.Name))
+                .ForMember(dto => dto.NumberOfPage, o1 => o1.MapFrom(o2=> o2.NumberOfPage))
+                .ForMember(dto => dto.Publisher, o1 => o1.MapFrom(o2=> o2.Publisher))
+                .ReverseMap();
         }
     }
 }

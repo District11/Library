@@ -18,7 +18,7 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public AuthorDto Author { get; set; }
+        public List<Author> Author { get; set; }
 
         /// <summary>
         /// Название книги.
@@ -28,7 +28,7 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Количество страниц в книге.
         /// </summary>
-        public int Count { get; set; }
+        public int NumberOfPage { get; set; }
 
         /// <summary>
         /// Автор книги.

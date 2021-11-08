@@ -34,6 +34,9 @@ namespace DataLayerLibrary
                 .WithMany(b => b.AuthorBooks)
                 .HasForeignKey(ab => ab.BookId);
 
+            modelBuilder.Entity<Author>()
+                .HasKey(a => a.Id);
+
             modelBuilder.Entity<Book>()
                 .HasKey(q => q.Id);
 

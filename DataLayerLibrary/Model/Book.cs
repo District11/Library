@@ -24,7 +24,7 @@ namespace DataLayerLibrary.Model
         /// <summary>
         /// Количество страниц в книге.
         /// </summary>
-        public int Count { get; set; }
+        public int NumberOfPage { get; set; }
 
         /// <summary>
         /// Автор книги.

@@ -1,14 +1,6 @@
 ﻿using BusinessLayerLibrary.DtoModel;
 using BusinessLayerLibrary.Services;
-using BusinessLayerLibrary.Services.Implementation;
-using DataLayerLibrary.Model;
-using Library.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library.Controllers
 {
@@ -46,9 +38,9 @@ namespace Library.Controllers
         
 
         [HttpPost("/api/book")]
-        public ActionResult AddBook(BookDto book)
+        public ActionResult CreateBook(BookDto book)
         {
-            _bookServices.AddBook(book);
+            _bookServices.CreateBook(book);
             return Ok();
         }
 

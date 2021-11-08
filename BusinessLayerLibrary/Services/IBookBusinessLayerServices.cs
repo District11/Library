@@ -23,7 +23,7 @@ namespace BusinessLayerLibrary.Services
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        Task<bool> AddBook(BookDto book);
+        Task<bool> CreateBook(BookDto book);
 
         /// <summary>
         /// Метод для получения книги.
