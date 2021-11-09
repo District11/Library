@@ -1,5 +1,4 @@
-﻿using DataLayerLibrary.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary.DtoModel
 {
-    /// <summary>
-    /// Dto для получения сущности книги.
-    /// </summary>
-    public class GetBookDto
+    public class BookDto
     {
         /// <summary>
         /// Идентификатор книги.
@@ -20,7 +16,7 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public List<Author> Author { get; set; }
+        public List<AuthorResponse> Author { get; set; }
 
         /// <summary>
         /// Название книги.

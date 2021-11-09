@@ -1,8 +1,5 @@
 ﻿using DataLayerLibrary.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataLayerLibrary.Services
@@ -37,12 +34,12 @@ namespace DataLayerLibrary.Services
         /// <param name="id">Идентификатор книги.</param>
         Task DeleteBook(int id);
 
-        /// <summary>
+       /* /// <summary>
         /// Метод сортировки библтоеки по параметрам.
         /// </summary>
         /// <param name="sortedModel">Параметр сортировки.</param>
         /// <returns></returns>
-        public Task Sorted(SortedModel sortedModel);
+        public Task Sorted(SortedModel sortedModel);*/
 
     }
 }

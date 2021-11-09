@@ -38,17 +38,17 @@ namespace Library.Controllers
         
 
         [HttpPost("/api/book")]
-        public ActionResult CreateBook(CreateBookDto book)
+        public ActionResult CreateBook(BookRequest book)
         {
             _bookServices.CreateBook(book);
             return Ok();
         }
 
-        [HttpGet("api/book/sorted/{sortedModelView}")]
+      /* [HttpGet("api/book/sorted/{sortedModelView}")]
         public ActionResult SortedLibrary(SortedModelDto sortedModelDto)
         {
             var library = _bookServices.Sorted(sortedModelDto);
             return Ok(library);
-        }
+        }*/
     }
 }

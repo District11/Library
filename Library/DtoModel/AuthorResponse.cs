@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary.DtoModel
 {
-    public class AuthorDto
+    public class AuthorResponse
     {
         /// <summary>
         /// Идентификатор автора.
@@ -35,13 +35,13 @@ namespace BusinessLayerLibrary.DtoModel
         public string Activity { get; set; }
 
         /// <summary>
-        /// Список авторов книги.
+        /// Список книг у автора.
         /// </summary>
         public List<AuthorBook> AuthorBooks { get; set; }
 
         /// <summary>
         /// Список книг.
         /// </summary>
-        public List<GetBookDto> ListBooks { get; set; }
+        public List<Book> ListBooks { get; set; }
     }
 }

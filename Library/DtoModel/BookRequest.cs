@@ -10,8 +10,13 @@ namespace BusinessLayerLibrary.DtoModel
     /// <summary>
     /// Dto для создания сущности книги.
     /// </summary>
-    public class CreateBookDto
+    public class BookRequest
     {
+        /// <summary>
+        /// Id книги.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Название книги
         /// </summary>

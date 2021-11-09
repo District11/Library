@@ -1,4 +1,4 @@
-﻿using BusinessLayerLibrary.DtoModel;
+﻿
 using DataLayerLibrary.Model;
 using System;
 using System.Collections.Generic;
@@ -17,13 +17,13 @@ namespace BusinessLayerLibrary.Services
         /// Метод получения списка всех книнг
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<GetBookDto>> GetAllBooks(int pageSize, int pageNumber);
+        Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber);
 
         /// <summary>
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        Task<bool> CreateBook(CreateBookDto book);
+        Task<bool> CreateBook(Book book);
 
         /// <summary>
         /// Метод для получения книги.
@@ -38,12 +38,12 @@ namespace BusinessLayerLibrary.Services
         /// <param name="book">Идентификатор книги</param>
         Task<bool> DeleteBook(int id);
 
-        /// <summary>
+       /* /// <summary>
         /// Метод для сортировки библеотеки по параметрам
         /// </summary>
         /// <param name="sortedModel">Данные сортировки</param>
         /// <returns></returns>
-        Task Sorted(SortedModelDto sortedModel);
+        Task Sorted(SortedModelDto sortedModel);*/
 
     }
 }

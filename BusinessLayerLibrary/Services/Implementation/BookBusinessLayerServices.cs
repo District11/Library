@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BusinessLayerLibrary.DtoModel;
 using DataLayerLibrary;
 using DataLayerLibrary.Model;
 using DataLayerLibrary.Services;
@@ -23,13 +22,14 @@ namespace BusinessLayerLibrary.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateBook(CreateBookDto book)
+        public async Task<bool> CreateBook(Book book)
         {
             try
             {
 
                 await _bookDataLayerServices.CreateBook(new Book
                 {
+                    Id = book.Id,
                     Name = book.Name, 
                     NumberOfPage = book.NumberOfPage,
                     PublisherId = book.PublisherId,
@@ -60,10 +60,10 @@ namespace BusinessLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<GetBookDto>> GetAllBooks(int pageSize, int pageNumber)
+        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber)
         {
             var books = await _bookDataLayerServices.GetAllBooks(pageSize, pageNumber);
-            return books.Select(e => _mapper.Map<GetBookDto>(e));
+            return books.Select(e => _mapper.Map<Book>(e));
         }
 
         public async Task<Book> GetBook(int id)
@@ -72,10 +72,10 @@ namespace BusinessLayerLibrary.Services.Implementation
             return books;
         }
 
-        public Task Sorted(SortedModelDto sortedModelDto)
+      /*  public Task Sorted(SortedModelDto sortedModelDto)
         {
             var librarySorted = _bookDataLayerServices.Sorted(_mapper.Map<SortedModel>(sortedModelDto));
             return librarySorted;
-        }
+        }*/
     }
 }

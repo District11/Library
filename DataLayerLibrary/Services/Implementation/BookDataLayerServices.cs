@@ -18,6 +18,8 @@ namespace DataLayerLibrary.Services.Implementation
         }
         public async Task CreateBook(Book book)
         {
+            _libraryDBContext.Entry(book.AuthorBooks.ToList()).State = EntityState.Unchanged;
+            _libraryDBContext.Entry(book.Publisher).State = EntityState.Unchanged;
             await _libraryDBContext.AddAsync(book);
             await _libraryDBContext.SaveChangesAsync();
         }
