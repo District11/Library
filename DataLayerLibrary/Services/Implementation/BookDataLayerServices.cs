@@ -18,7 +18,7 @@ namespace DataLayerLibrary.Services.Implementation
         }
         public async Task CreateBook(Book book)
         {
-            _libraryDBContext.Entry(book.AuthorBooks.ToList()).State = EntityState.Unchanged;
+            _libraryDBContext.Entry(book.ListAuthor.ToList()).State = EntityState.Unchanged;
             _libraryDBContext.Entry(book.Publisher).State = EntityState.Unchanged;
             await _libraryDBContext.AddAsync(book);
             await _libraryDBContext.SaveChangesAsync();
@@ -48,7 +48,7 @@ namespace DataLayerLibrary.Services.Implementation
             return await _libraryDBContext.Books.AsQueryable().Where(e => e.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task Sorted(SortedModel sortedModel)
+        /*public Task Sorted(SortedModel sortedModel)
         {
 
             IQueryable<Book> books = _libraryDBContext.Books;
@@ -56,10 +56,10 @@ namespace DataLayerLibrary.Services.Implementation
             {
                 SortedModel.NameBookSorted => books.OrderBy(b => b.Name),
                 SortedModel.CountPagesSorted => books.OrderBy(b => b.NumberOfPage),
-                SortedModel.LastNameSorted => books.OrderBy(b => b.AuthorBooks),
+                SortedModel.LastNameSorted => books.OrderBy(b => b.ListAuthor),
                 SortedModel.CityPublisherSorted => books.OrderBy(b => b.Publisher.City)
             };
             return books.AsNoTracking().ToListAsync();
-        }
+        }*/
     }
 }

@@ -33,7 +33,6 @@ namespace BusinessLayerLibrary.Services.Implementation
                     Name = book.Name, 
                     NumberOfPage = book.NumberOfPage,
                     PublisherId = book.PublisherId,
-                  
                 });
                 return true;
             }

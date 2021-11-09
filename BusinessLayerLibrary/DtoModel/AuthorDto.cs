@@ -1,15 +1,13 @@
-﻿using System;
+﻿using DataLayerLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace BusinessLayerLibrary.DtoModel
 {
-    /// <summary>
-    /// Модель автора.
-    /// </summary>
-    public class Author
+    public class AuthorDto
     {
         /// <summary>
         /// Идентификатор автора.
@@ -37,8 +35,13 @@ namespace DataLayerLibrary.Model
         public string Activity { get; set; }
 
         /// <summary>
-        /// Список авторов книги.
+        /// Список книг у автора.
         /// </summary>
-        public List<AuthorBook> ListBooks { get; set; }
+        public List<AuthorBook> AuthorBooks { get; set; }
+
+        /// <summary>
+        /// Список книг.
+        /// </summary>
+        public List<Book> ListBooks { get; set; }
     }
 }

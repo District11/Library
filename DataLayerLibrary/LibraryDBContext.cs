@@ -26,12 +26,12 @@ namespace DataLayerLibrary
 
             modelBuilder.Entity<AuthorBook>()
                 .HasOne(ab => ab.Author)
-                .WithMany(a => a.AuthorBooks)
+                .WithMany(a => a.ListBooks)
                 .HasForeignKey(ab =>ab.AuthorId);
 
             modelBuilder.Entity<AuthorBook>()
                 .HasOne(ab => ab.Book)
-                .WithMany(b => b.AuthorBooks)
+                .WithMany(b => b.ListAuthor)
                 .HasForeignKey(ab => ab.BookId);
 
             modelBuilder.Entity<Author>()

@@ -1,6 +1,9 @@
-﻿using BusinessLayerLibrary.DtoModel;
+﻿using AutoMapper;
+using BusinessLayerLibrary.DtoModel;
 using BusinessLayerLibrary.Services;
+using DataLayerLibrary.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Library.Controllers
 {
@@ -8,47 +11,41 @@ namespace Library.Controllers
     public class LibraryBooksController : ControllerBase
     {
         private readonly IBookBusinessLayerServices _bookServices;
+        private readonly IMapper _mapper;
 
-        public LibraryBooksController(IBookBusinessLayerServices bookServices)
+        public LibraryBooksController(IBookBusinessLayerServices bookServices, IMapper mapper)
         {
-
             _bookServices = bookServices;
+            _mapper = mapper;
         }
 
         [HttpGet("/api/books")]
-        public ActionResult GetAllBooks(int pageSize, int pageNumber)
+        public async Task<ActionResult> GetAllBooks(int pageSize, int pageNumber)
         {
-            var books = _bookServices.GetAllBooks(pageSize, pageNumber);
+            var books = await _bookServices.GetAllBooks(pageSize, pageNumber);
             return Ok(books);
         }
 
         [HttpGet("/api/book/{id}")]
-        public ActionResult GetBook(int id)
+        public async Task<ActionResult> GetBook(int id)
         {
            var book = _bookServices.GetBook(id);
             return Ok(book);
         }
 
         [HttpDelete("/api/book/{id}")]
-        public ActionResult DeleteBook(int id)
+        public async Task<ActionResult> DeleteBook(int id)
         {
-            _bookServices.DeleteBook(id);
+            await _bookServices.DeleteBook(id);
             return Ok();
         }
         
 
         [HttpPost("/api/book")]
-        public ActionResult CreateBook(BookRequest book)
+        public async Task<ActionResult> CreateBook(BookRequest book)
         {
-            _bookServices.CreateBook(book);
-            return Ok();
+           await _bookServices.CreateBook(book);
+           return Ok();
         }
-
-      /* [HttpGet("api/book/sorted/{sortedModelView}")]
-        public ActionResult SortedLibrary(SortedModelDto sortedModelDto)
-        {
-            var library = _bookServices.Sorted(sortedModelDto);
-            return Ok(library);
-        }*/
     }
 }

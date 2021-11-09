@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace BusinessLayerLibrary.DtoModel
 {
-    public enum SortedModel
+    public enum SortedModelDto
     {
         /// <summary>
         /// Сортировка по наименованию книги.

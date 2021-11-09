@@ -1,10 +1,16 @@
-﻿using System;
+﻿using DataLayerLibrary.Model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace BusinessLayerLibrary.DtoModel
 {
-    public class Book
+    /// <summary>
+    /// Dto для получения сущности книги.
+    /// </summary>
+    public class BookResponse
     {
         /// <summary>
         /// Идентификатор книги.
@@ -12,9 +18,9 @@ namespace DataLayerLibrary.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Список авторов книги.
+        /// Автор книги.
         /// </summary>
-        public IList<AuthorBook> ListAuthor { get; set; }
+        public List<Author> Author { get; set; }
 
         /// <summary>
         /// Название книги.
@@ -30,10 +36,5 @@ namespace DataLayerLibrary.Model
         /// Автор книги.
         /// </summary>
         public Publisher Publisher { get; set; }
-
-        /// <summary>
-        /// ID издательства
-        /// </summary>
-        public int PublisherId { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 using BusinessLayerLibrary.Services;
 using BusinessLayerLibrary.Services.Implementation;
 using DataLayerLibrary;
-using DataLayerLibrary.Extentions;
 using DataLayerLibrary.Services;
 using DataLayerLibrary.Services.Implementation;
 using Microsoft.AspNetCore.Builder;
@@ -36,7 +35,6 @@ namespace Library
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library", Version = "v1" });
             });
-            services.AddDataLayerExtentions();
             services.AddScoped<IBookBusinessLayerServices, BookBusinessLayerServices>();
             services.AddScoped<IBookDataLayerServices, BookDataLayerServices>();
         }
