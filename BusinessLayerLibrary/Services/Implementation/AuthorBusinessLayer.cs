@@ -24,27 +24,10 @@ namespace BusinessLayerLibrary.Services.Implementation
         }
 
 
-        public async Task<bool> CreateAuthor(Author author)
+        public async Task<Author> CreateAuthor(Author author)
         {
-            try
-            {
-
-                await _authorDataLayerServices.CreateAuthor(new Author
-                {
-                    Id = author.Id,
-                    LastName = author.LastName,
-                    MiddleName = author.MiddleName,
-                    Name = author.Name,
-                    Activity = author.Activity
-
-                });
-                return true;
-            }
-            catch
-            {
-                Console.WriteLine("Что-то пошло не так");
-                return false;
-            }
+            await _authorDataLayerServices.CreateAuthor(author);
+            return author;
         }
 
         public async Task<bool> DeleteAuthor(int id)
@@ -70,7 +53,7 @@ namespace BusinessLayerLibrary.Services.Implementation
 
         public async Task<Author> GetAuthor(int id)
         {
-            
+
             var author = await _authorDataLayerServices.GetAuthor(id);
             return author;
         }

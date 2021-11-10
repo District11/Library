@@ -25,10 +25,5 @@ namespace DataLayerLibrary.Model
         /// Город.
         /// </summary>
         public string City { get; set; }
-
-        /// <summary>
-        /// Список книги у издателя
-        /// </summary>
-        public List<Book> Books { get; set; }
     }
 }

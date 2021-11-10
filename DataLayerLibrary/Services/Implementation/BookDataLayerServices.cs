@@ -18,7 +18,10 @@ namespace DataLayerLibrary.Services.Implementation
         }
         public async Task CreateBook(Book book)
         {
-            _libraryDBContext.Entry(book.ListAuthor.ToList()).State = EntityState.Unchanged;
+            foreach (var item in book.Authors)
+            {
+                _libraryDBContext.Entry(item).State = EntityState.Unchanged;
+            }
             _libraryDBContext.Entry(book.Publisher).State = EntityState.Unchanged;
             await _libraryDBContext.AddAsync(book);
             await _libraryDBContext.SaveChangesAsync();
@@ -40,12 +43,15 @@ namespace DataLayerLibrary.Services.Implementation
 
         public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber)
         {
-            return await _libraryDBContext.Books.Skip(pageSize*(pageNumber - 1)).Take(pageSize).ToListAsync();
+            return await _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
+                .Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
         }
+
 
         public async Task<Book> GetBook(int id)
         {
-            return await _libraryDBContext.Books.AsQueryable().Where(e => e.Id == id).FirstOrDefaultAsync();
+            return await _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
+                .FirstOrDefaultAsync(u => u.Id == id);
         }
     }
 }

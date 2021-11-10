@@ -10,11 +10,6 @@ namespace Library.DtoModel
     public class AuthorRequest
     {  
         /// <summary>
-        /// Идентификатор автора.
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
         /// Фамилия автора.
         /// </summary>
         public string LastName { get; set; }
@@ -33,15 +28,5 @@ namespace Library.DtoModel
         /// Деятельность автора.
         /// </summary>
         public string Activity { get; set; }
-
-        /// <summary>
-        /// Список книг у автора.
-        /// </summary>
-        public List<int> AuthorBooks { get; set; }
-
-        /// <summary>
-        /// Список книг.
-        /// </summary>
-        public List<int> ListBooksId { get; set; }
     }
 }

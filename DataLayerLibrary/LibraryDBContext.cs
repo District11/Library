@@ -13,7 +13,6 @@ namespace DataLayerLibrary
 
         public DbSet<Publisher> Publishers { get; set; }
 
-        public DbSet<AuthorBook> AuthorBooks { get; set; }
 
         public LibraryDBContext(DbContextOptions options) : base(options) {
          
@@ -21,19 +20,6 @@ namespace DataLayerLibrary
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuthorBook>()
-                .HasKey(ab => new { ab.BookId, ab. AuthorId });
-
-            modelBuilder.Entity<AuthorBook>()
-                .HasOne(ab => ab.Author)
-                .WithMany(a => a.ListBooks)
-                .HasForeignKey(ab =>ab.AuthorId);
-
-            modelBuilder.Entity<AuthorBook>()
-                .HasOne(ab => ab.Book)
-                .WithMany(b => b.ListAuthor)
-                .HasForeignKey(ab => ab.BookId);
-
             modelBuilder.Entity<Author>()
                 .HasKey(a => a.Id);
 
@@ -41,8 +27,7 @@ namespace DataLayerLibrary
                 .HasKey(q => q.Id);
 
             modelBuilder.Entity<Publisher>()
-                .HasMany(b => b.Books).
-                WithOne(p =>p.Publisher);
+                .HasKey(p => p.Id);
         }
     }
 }

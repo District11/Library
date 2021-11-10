@@ -13,11 +13,6 @@ namespace Library.DtoModel
     public class PublisherDto
     {
         /// <summary>
-        /// Идентификатор издателя.
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
         /// Наименование организации.
         /// </summary>
         public string Name { get; set; }
@@ -26,10 +21,5 @@ namespace Library.DtoModel
         /// Город.
         /// </summary>
         public string City { get; set; }
-
-        /// <summary>
-        /// Список книги у издателя
-        /// </summary>
-        public List<int> BooksId { get; set; }
     }
 }

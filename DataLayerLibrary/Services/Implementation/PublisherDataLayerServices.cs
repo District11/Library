@@ -19,7 +19,6 @@ namespace DataLayerLibrary.Services.Implementation
 
         public async Task CreatePublisher(Publisher publisher)
         {
-            _libraryDBContext.Entry(publisher.Books.ToList()).State = EntityState.Unchanged;
             await _libraryDBContext.Publishers.AddAsync(publisher);
             await _libraryDBContext.SaveChangesAsync();
         }

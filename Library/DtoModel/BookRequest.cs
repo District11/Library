@@ -13,11 +13,6 @@ namespace Library.DtoModel
     public class BookRequest
     {
         /// <summary>
-        /// Id книги.
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
         /// Название книги
         /// </summary>
         public string Name { get; set; }

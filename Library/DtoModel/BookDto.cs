@@ -7,17 +7,7 @@ using System.Threading.Tasks;
 namespace Library.DtoModel
 {
     public class BookDto
-    {
-        /// <summary>
-        /// Идентификатор книги.
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
-        /// Автор книги.
-        /// </summary>
-        public List<AuthorDto> Author { get; set; }
-
+    {    
         /// <summary>
         /// Название книги.
         /// </summary>
@@ -31,6 +21,11 @@ namespace Library.DtoModel
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public PublisherDto Publisher { get; set; }
+        public List<int> AuthorId { get; set; }
+
+        /// <summary>
+        /// Издатель.
+        /// </summary>
+        public int PublisherId { get; set; }
     }
 }

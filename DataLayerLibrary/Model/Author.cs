@@ -35,10 +35,5 @@ namespace DataLayerLibrary.Model
         /// Деятельность автора.
         /// </summary>
         public string Activity { get; set; }
-
-        /// <summary>
-        /// Список авторов книги.
-        /// </summary>
-        public List<AuthorBook> ListBooks { get; set; }
     }
 }

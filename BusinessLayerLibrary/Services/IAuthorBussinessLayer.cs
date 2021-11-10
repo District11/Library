@@ -21,7 +21,7 @@ namespace BusinessLayerLibrary.Services
         /// </summary>
         /// <param name="author"></param>
         /// <returns></returns>
-        Task<bool> CreateAuthor(Author author);
+        Task<Author> CreateAuthor(Author author);
 
         /// <summary>
         /// Метод для получения автора.

@@ -47,11 +47,11 @@ namespace Library.Controllers
         }
 
         [HttpPost("/api/author")]
-        public async Task<bool> CreateAuthor([FromBody] AuthorRequest authorRequest)
+        public async Task<ActionResult> CreateAuthor([FromBody] AuthorRequest authorRequest)
         {
             var model = _mapper.Map<Author>(authorRequest);
             var author = await _authorBussinessLayer.CreateAuthor(model);
-            return author;
+            return Ok(author);
         }
 
     }

@@ -33,15 +33,5 @@ namespace Library.DtoModel
         /// Деятельность автора.
         /// </summary>
         public string Activity { get; set; }
-
-        /// <summary>
-        /// Список книг у автора.
-        /// </summary>
-        public List<AuthorBook> AuthorBooks { get; set; }
-
-        /// <summary>
-        /// Список книг.
-        /// </summary>
-        public List<Book> ListBooks { get; set; }
     }
 }

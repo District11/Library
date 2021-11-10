@@ -12,11 +12,6 @@ namespace DataLayerLibrary.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Список авторов книги.
-        /// </summary>
-        public List<AuthorBook> ListAuthor { get; set; }
-
-        /// <summary>
         /// Название книги.
         /// </summary>
         public string Name { get; set; }
@@ -27,13 +22,13 @@ namespace DataLayerLibrary.Model
         public int NumberOfPage { get; set; }
 
         /// <summary>
+        /// Список авторов книги.
+        /// </summary>
+        public List<Author> Authors { get; set; }
+
+        /// <summary>
         /// Автор книги.
         /// </summary>
         public Publisher Publisher { get; set; }
-
-        /// <summary>
-        /// ID издательства
-        /// </summary>
-        public int PublisherId { get; set; }
     }
 }
