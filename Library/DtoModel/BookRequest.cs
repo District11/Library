@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.DtoModel
+namespace Library.DtoModel
 {
     /// <summary>
     /// Dto для создания сущности книги.
@@ -30,7 +30,7 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Список id авторов одной книги.
         /// </summary>
-        public IList<int> AuthorId { get; set; }
+        public List<int> AuthorId { get; set; }
 
         /// <summary>
         /// Id издательства для книги.

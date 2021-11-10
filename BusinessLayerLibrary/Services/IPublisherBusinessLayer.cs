@@ -19,7 +19,7 @@ namespace BusinessLayerLibrary.Services
         /// Метод для добавления издателя.
         /// </summary>
         /// <param name="book">Издатель.</param>
-        Task<bool> CreatePublisher(Publisher publisher);
+        Task<Publisher> CreatePublisher(Publisher publisher);
 
         /// <summary>
         /// Метод для получения издателя.

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using BusinessLayerLibrary.DtoModel;
 using BusinessLayerLibrary.Services;
 using DataLayerLibrary.Model;
+using Library.DtoModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

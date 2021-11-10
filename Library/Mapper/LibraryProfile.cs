@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using BusinessLayerLibrary.DtoModel;
 using DataLayerLibrary.Model;
+using Library.DtoModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Library.Mapper
 {
@@ -17,11 +18,11 @@ namespace Library.Mapper
                 .ReverseMap();
 
             CreateMap<BookRequest, Book>()
-                .ForMember(dto => dto.Id, o1 => o1.MapFrom(o2 => o2.Id))
-                .ForMember(dto => dto.Name, o1 => o1.MapFrom(o2 => o2.Name))
-                .ForMember(dto => dto.NumberOfPage, o1 => o1.MapFrom(o2 => o2.NumberOfPage))
-                .ForMember(dto => dto.Publisher, o1 => o1.MapFrom(o2 => o2.PublisherId))
+                .ForMember(dto => dto.ListAuthor, o1 => o1.MapFrom(o2 => o2.AuthorId.ToList()))
                 .ReverseMap();
+
+            CreateMap<BookDto, Book>()
+               .ReverseMap();
 
             CreateMap<AuthorResponse, Author>()
                 .ForMember(dto => dto.Id, o1 => o1.MapFrom(o2 => o2.Id))
@@ -44,7 +45,7 @@ namespace Library.Mapper
                 .ForMember(dto => dto.Id, o1 => o1.MapFrom(o2 => o2.Id))
                 .ForMember(dto => dto.Name, o1 => o1.MapFrom(o2 => o2.Name))
                 .ForMember(dto => dto.City, o1 => o1.MapFrom(o2 => o2.City))
-                .ForMember(dto => dto.Books, o1 => o1.MapFrom(o2 => new List<Book> { { new Book { Id = o2.BooksId } } }))
+                .ForMember(dto => dto.Books, o1 => o1.MapFrom(o2 => o2.BooksId))
                 .ReverseMap();
         }
     }

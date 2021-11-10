@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using BusinessLayerLibrary.DtoModel;
 using BusinessLayerLibrary.Services;
 using DataLayerLibrary.Model;
+using Library.DtoModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -29,7 +29,7 @@ namespace Library.Controllers
         [HttpGet("/api/book/{id}")]
         public async Task<ActionResult> GetBook(int id)
         {
-           var book = _bookServices.GetBook(id);
+           var book = await _bookServices.GetBook(id);
             return Ok(book);
         }
 
@@ -42,10 +42,11 @@ namespace Library.Controllers
         
 
         [HttpPost("/api/book")]
-        public async Task<ActionResult> CreateBook(BookRequest book)
+        public async Task<ActionResult> CreateBook([FromBody]BookRequest book)
         {
-           await _bookServices.CreateBook(book);
-           return Ok();
+           var model = _mapper.Map<Book>(book);
+           var newBook = await _bookServices.CreateBook(model);
+           return Ok(newBook);
         }
     }
 }

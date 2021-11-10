@@ -35,6 +35,10 @@ namespace Library
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library", Version = "v1" });
             });
+            services.AddScoped<IPublisherBusinessLayer, PublisherBusinessLayer>();
+            services.AddScoped<IPublisherDataLayerServices, PublisherDataLayerServices>();
+            services.AddScoped<IAuthorBussinessLayer,AuthorBusinessLayer>();
+            services.AddScoped<IAuthorDataLayerServices,AuthorDataLayerServices>();
             services.AddScoped<IBookBusinessLayerServices, BookBusinessLayerServices>();
             services.AddScoped<IBookDataLayerServices, BookDataLayerServices>();
         }

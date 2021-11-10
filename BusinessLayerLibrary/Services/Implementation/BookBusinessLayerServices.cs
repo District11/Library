@@ -22,26 +22,10 @@ namespace BusinessLayerLibrary.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateBook(Book book)
+        public async Task<Book> CreateBook(Book book)
         {
-            try
-            {
-
-                await _bookDataLayerServices.CreateBook(new Book
-                {
-                    Id = book.Id,
-                    Name = book.Name, 
-                    NumberOfPage = book.NumberOfPage,
-                    PublisherId = book.PublisherId,
-                });
-                return true;
-            }
-            catch
-            {
-                Console.WriteLine("Что-то пошло не так");
-                return false;
-            }
-
+            await _bookDataLayerServices.CreateBook(book);
+            return book;
         }
 
         public async Task<bool> DeleteBook(int id)
@@ -70,11 +54,5 @@ namespace BusinessLayerLibrary.Services.Implementation
             var books = await _bookDataLayerServices.GetBook(id);
             return books;
         }
-
-      /*  public Task Sorted(SortedModelDto sortedModelDto)
-        {
-            var librarySorted = _bookDataLayerServices.Sorted(_mapper.Map<SortedModel>(sortedModelDto));
-            return librarySorted;
-        }*/
     }
 }

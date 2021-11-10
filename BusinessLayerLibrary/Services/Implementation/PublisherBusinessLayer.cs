@@ -22,24 +22,10 @@ namespace BusinessLayerLibrary.Services.Implementation
 
 
 
-        public async Task<bool> CreatePublisher(Publisher publisher)
+        public async Task<Publisher> CreatePublisher(Publisher publisher)
         {
-            try
-            {
-                await _publisherDataLayerServices.CreatePublisher(new Publisher
-                {
-                    Id = publisher.Id,
-                    Name = publisher.Name,
-                    City = publisher.City,
-                    Books = publisher.Books
-                });
-                return true;
-
-            }
-            catch
-            {
-                return false;
-            }
+            await _publisherDataLayerServices.CreatePublisher(publisher);
+            return publisher;  
         }
 
         public async Task<bool> DeletePublisher(int id)
@@ -61,9 +47,10 @@ namespace BusinessLayerLibrary.Services.Implementation
             return publisher.Select(p => _mapper.Map<Publisher>(p));
         }
 
-        public Task<Publisher> GetPublisher(int id)
+        public async Task<Publisher> GetPublisher(int id)
         {
-            throw new NotImplementedException();
+            var listpublishers = await _publisherDataLayerServices.GetPublisher(id);
+            return listpublishers;
         }
     }
 }

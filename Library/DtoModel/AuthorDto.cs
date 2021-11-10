@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.DtoModel
+namespace Library.DtoModel
 {
     public class AuthorDto
     {

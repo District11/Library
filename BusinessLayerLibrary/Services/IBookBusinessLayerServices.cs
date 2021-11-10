@@ -23,7 +23,7 @@ namespace BusinessLayerLibrary.Services
         /// Метод для добавления книги.
         /// </summary>
         /// <param name="book">Книга</param>
-        Task<bool> CreateBook(Book book);
+        Task<Book> CreateBook(Book book);
 
         /// <summary>
         /// Метод для получения книги.
@@ -38,12 +38,6 @@ namespace BusinessLayerLibrary.Services
         /// <param name="book">Идентификатор книги</param>
         Task<bool> DeleteBook(int id);
 
-       /* /// <summary>
-        /// Метод для сортировки библеотеки по параметрам
-        /// </summary>
-        /// <param name="sortedModel">Данные сортировки</param>
-        /// <returns></returns>
-        Task Sorted(SortedModelDto sortedModel);*/
 
     }
 }

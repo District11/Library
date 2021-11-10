@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.DtoModel
+namespace Library.DtoModel
 {
     public class BookDto
     {
@@ -16,7 +16,7 @@ namespace BusinessLayerLibrary.DtoModel
         /// <summary>
         /// Автор книги.
         /// </summary>
-        public List<AuthorResponse> Author { get; set; }
+        public List<AuthorDto> Author { get; set; }
 
         /// <summary>
         /// Название книги.
