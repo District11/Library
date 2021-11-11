@@ -1,4 +1,4 @@
-﻿using DataLayerLibrary.Model;
+﻿using DataLayerLibrary.Models;
 using DataLayerLibrary.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Services.Implementation
+namespace DataLayerLibrary.Services.Implementations
 {
     public class PublisherDataLayerServices : IPublisherDataLayerServices
     {
@@ -26,10 +26,10 @@ namespace DataLayerLibrary.Services.Implementation
         public async Task DeletePublisher(int id)
         {
             var publisher = await _libraryDBContext.Publishers.FindAsync(id);
-            if(publisher != null)
+            if (publisher != null)
             {
                 _libraryDBContext.Publishers.Remove(publisher);
-               await _libraryDBContext.SaveChangesAsync();
+                await _libraryDBContext.SaveChangesAsync();
             }
             else
             {
@@ -37,26 +37,25 @@ namespace DataLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Publisher>> GetAllPublishersModifie(int pageSize, int pageNumber, string filter, string sorted)
+        public Task<IEnumerable<Publisher>> GetAllPublishersModifie(int pageSize, int pageNumber, string filter, string sort)
         {
-            var sortmethod = Publisher.GetSortExpressions(sorted);
-            if (filter == null)
+            var sortmethod = Publisher.GetSortExpressions(sort);
+
+            var queery = _libraryDBContext.Publishers
+                .OrderBy(sortmethod)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            if (filter != null)
             {
-                return await _libraryDBContext.Publishers
-               .Skip((pageNumber - 1) * pageSize)
-               .Take(pageSize)
-               .OrderBy(sortmethod)
-               .ToListAsync();
+                queery = _libraryDBContext.Publishers
+                    .Where(t => t.Name.Contains(filter) || t.City.Contains(filter))
+                    .OrderBy(sortmethod)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize);
             }
-            else
-            {
-                return await _libraryDBContext.Publishers
-                   .Where(t => t.Name.Contains(filter) || t.City.Contains(filter))
-                   .Skip((pageNumber - 1) * pageSize)
-                   .Take(pageSize)
-                   .OrderBy(sortmethod)
-                   .ToListAsync();
-            }
+
+            return Task.FromResult(queery.AsEnumerable());
         }
 
         public Task<Publisher> GetPublisher(int id)

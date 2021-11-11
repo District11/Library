@@ -1,4 +1,4 @@
-﻿using DataLayerLibrary.Model;
+﻿using DataLayerLibrary.Models;
 using DataLayerLibrary.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Services.Implementation
+namespace DataLayerLibrary.Services.Implementations
 {
     public class AuthorDataLayerServices : IAuthorDataLayerServices
     {
@@ -38,26 +38,25 @@ namespace DataLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted)
+        public Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sort)
         {
-            var sortmethod = Author.GetSortExpressions(sorted);
-            if (filter == null)
+            var sortmethod = Author.GetSortExpressions(sort);
+
+            var queery = _libraryDBContext.Authors
+                .OrderBy(sortmethod)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            if (filter != null)
             {
-                return await _libraryDBContext.Authors
-               .Skip((pageNumber - 1) * pageSize)
-               .Take(pageSize)
-               .OrderBy(sortmethod)
-               .ToListAsync();
+                queery = _libraryDBContext.Authors
+                    .Where(t => t.LastName.Contains(filter) || t.MiddleName.Contains(filter) || t.Name.Contains(filter))
+                    .OrderBy(sortmethod)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize);
             }
-            else
-            {
-                return await _libraryDBContext.Authors
-                   .Where(t => t.LastName.Contains(filter) || t.MiddleName.Contains(filter) || t.Name.Contains(filter))
-                   .Skip((pageNumber - 1) * pageSize)
-                   .Take(pageSize)
-                   .OrderBy(sortmethod)
-                   .ToListAsync();
-            }
+
+            return Task.FromResult(queery.AsEnumerable());
         }
 
         public async Task<Author> GetAuthor(int id)

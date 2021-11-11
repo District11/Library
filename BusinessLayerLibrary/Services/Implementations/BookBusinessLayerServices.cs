@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using BusinessLayerLibrary.Services.Interfaces;
-using DataLayerLibrary.Model;
+using DataLayerLibrary.Models;
 using DataLayerLibrary.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.Services.Implementation
+namespace BusinessLayerLibrary.Services.Implementations
 {
     public class BookBusinessLayerServices : IBookBusinessLayerServices
     {

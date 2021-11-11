@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Model
+namespace DataLayerLibrary.Models
 {
     /// <summary>
     /// Модель издательства.

@@ -1,4 +1,4 @@
-﻿using DataLayerLibrary.Model;
+﻿using DataLayerLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayerLibrary

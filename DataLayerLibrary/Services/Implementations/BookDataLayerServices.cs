@@ -1,13 +1,12 @@
-﻿using DataLayerLibrary.Model;
+﻿using DataLayerLibrary.Models;
 using DataLayerLibrary.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Services.Implementation
+namespace DataLayerLibrary.Services.Implementations
 {
     public class BookDataLayerServices : IBookDataLayerServices
     {
@@ -42,28 +41,24 @@ namespace DataLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber, string filter, string sorted)
+        public Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber, string filter, string sort)
         {
-            var sortmethod = Book.GetSortExpressions(sorted);
-            if (filter == null)
+            var sortmethod = Book.GetSortExpressions(sort);
+
+            var queery = _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
+                .OrderBy(sortmethod)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            if (filter != null)
             {
-                return await _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
-               .Skip((pageNumber - 1) * pageSize)
-               .Take(pageSize)
-               .OrderBy(sortmethod)
-               .ToListAsync();
+                queery = _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher).Where(t => t.Name.Contains(filter)
+                || t.Publisher.City.Contains(filter)
+                || t.Authors.Any(a => a.LastName.Contains(filter)) || t.Authors.Any(a => a.MiddleName.Contains(filter))
+                || t.Authors.Any(a => a.Name.Contains(filter))).OrderBy(sortmethod).Skip((pageNumber - 1) * pageSize).Take(pageSize);
             }
-            else
-            {
-                return await _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
-                   .Where(t => t.Name.Contains(filter) ||t.Publisher.City.Contains(filter) 
-                   || t.Authors.Any(a => a.LastName.Contains(filter)) || t.Authors.Any(a =>a.MiddleName.Contains(filter))
-                   || t.Authors.Any(a => a.Name.Contains(filter))) 
-                   .Skip((pageNumber - 1) * pageSize)
-                   .Take(pageSize)
-                   .OrderBy(sortmethod)
-                   .ToListAsync();
-            }
+
+            return Task.FromResult(queery.AsEnumerable());
         }
 
 

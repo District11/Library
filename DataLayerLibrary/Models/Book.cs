@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq.Expressions;
 
-namespace DataLayerLibrary.Model
+namespace DataLayerLibrary.Models
 {
     /// <summary>
     /// Модель книги.

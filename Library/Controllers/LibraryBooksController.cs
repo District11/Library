@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLayerLibrary.Services.Interfaces;
-using DataLayerLibrary.Model;
+using DataLayerLibrary.Models;
 using Library.DtoModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

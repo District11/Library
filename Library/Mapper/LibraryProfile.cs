@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DataLayerLibrary.Model;
+using DataLayerLibrary.Models;
 using Library.DtoModel;
 using System.Linq;
 
