@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DataLayerLibrary.Model;
 using Library.DtoModel;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Library.Mapper

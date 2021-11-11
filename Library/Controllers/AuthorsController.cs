@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using BusinessLayerLibrary.Services;
+using BusinessLayerLibrary.Services.Interfaces;
 using DataLayerLibrary.Model;
 using Library.DtoModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Library.Controllers
@@ -25,9 +21,9 @@ namespace Library.Controllers
 
 
         [HttpGet("/api/authors")]
-        public async Task<ActionResult> GetAllAuthors()
+        public async Task<ActionResult> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted)
         {
-            var listAuthors = await _authorBussinessLayer.GetAllAuthors();
+            var listAuthors = await _authorBussinessLayer.GetAllAuthors(pageSize, pageNumber, filter, sorted);
             return Ok(listAuthors);
         }
 

@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using BusinessLayerLibrary.Services;
+using BusinessLayerLibrary.Services.Interfaces;
 using DataLayerLibrary.Model;
 using Library.DtoModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Library.Controllers
@@ -25,14 +21,14 @@ namespace Library.Controllers
 
 
         [HttpGet("/api/publishers")]
-        public async Task<ActionResult> GetAllAuthors()
+        public async Task<ActionResult> GetAllPublishers(int pageSize, int pageNumber, string filter, string sorted)
         {
-            var listpublishers = await _publisherBusinessLayer.GetAllPublishers();
+            var listpublishers = await _publisherBusinessLayer.GetAllPublishers(pageSize, pageNumber, filter, sorted);
             return Ok(listpublishers);
         }
 
         [HttpGet("/api/publisher/{id}")]
-        public async Task<ActionResult> GetAuthor(int id)
+        public async Task<ActionResult> GetPublisher(int id)
         {
             var author = await _publisherBusinessLayer.GetPublisher(id);
             return Ok(author);
@@ -47,7 +43,7 @@ namespace Library.Controllers
 
 
         [HttpPost("/api/publisher")]
-        public async Task<ActionResult> CreateBook([FromBody]PublisherDto publisherdto)
+        public async Task<ActionResult> CreatePublishers([FromBody]PublisherDto publisherdto)
         {
             var model = _mapper.Map<Publisher>(publisherdto);
             var publisher = await _publisherBusinessLayer.CreatePublisher(model);

@@ -1,9 +1,9 @@
 ﻿using DataLayerLibrary.Model;
+using DataLayerLibrary.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataLayerLibrary.Services.Implementation
@@ -38,9 +38,26 @@ namespace DataLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Author>> GetAllAuthors()
+        public async Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted)
         {
-            return await _libraryDBContext.Authors.ToListAsync();
+            var sortmethod = Author.GetSortExpressions(sorted);
+            if (filter == null)
+            {
+                return await _libraryDBContext.Authors
+               .Skip((pageNumber - 1) * pageSize)
+               .Take(pageSize)
+               .OrderBy(sortmethod)
+               .ToListAsync();
+            }
+            else
+            {
+                return await _libraryDBContext.Authors
+                   .Where(t => t.LastName.Contains(filter) || t.MiddleName.Contains(filter) || t.Name.Contains(filter))
+                   .Skip((pageNumber - 1) * pageSize)
+                   .Take(pageSize)
+                   .OrderBy(sortmethod)
+                   .ToListAsync();
+            }
         }
 
         public async Task<Author> GetAuthor(int id)

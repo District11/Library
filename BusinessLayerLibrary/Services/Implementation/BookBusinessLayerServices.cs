@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using DataLayerLibrary;
+using BusinessLayerLibrary.Services.Interfaces;
 using DataLayerLibrary.Model;
-using DataLayerLibrary.Services;
+using DataLayerLibrary.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary.Services.Implementation
@@ -43,9 +42,13 @@ namespace BusinessLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber)
+        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber, string filter, string sorted)
         {
-            var books = await _bookDataLayerServices.GetAllBooks(pageSize, pageNumber);
+            if (pageSize == 0 || pageNumber == 0)
+            {
+                return null;
+            }
+            var books = await _bookDataLayerServices.GetAllBooks(pageSize, pageNumber, filter, sorted);
             return books.Select(e => _mapper.Map<Book>(e));
         }
 

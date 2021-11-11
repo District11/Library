@@ -6,15 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.Services
+namespace BusinessLayerLibrary.Services.Interfaces
 {
+    /// <summary>
+    /// Сервис автора в бизнес слое.
+    /// </summary>
     public interface IAuthorBussinessLayer
     {
         /// <summary>
-        /// Метод получения списка всех книнг.
+        /// Метод получения списка всех Авторов.
         /// </summary>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="pageNumber">Номер страницы</param>
+        /// <param name="filter">Параметр фильтра</param>
+        /// <param name="sorted">Параметр сортировки</param>
         /// <returns></returns>
-        Task<IEnumerable<Author>> GetAllAuthors();
+        Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted);
 
         /// <summary>
         /// Метод для добавления автора

@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-
+using BusinessLayerLibrary.Services.Interfaces;
 using DataLayerLibrary.Model;
-using DataLayerLibrary.Services;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using DataLayerLibrary.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary.Services.Implementation
@@ -45,9 +43,13 @@ namespace BusinessLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Author>> GetAllAuthors()
+        public async Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted)
         {
-            var authors = await _authorDataLayerServices.GetAllAuthors();
+            if(pageSize == 0 || pageNumber == 0)
+            {
+                return null;
+            }
+            var authors = await _authorDataLayerServices.GetAllAuthors(pageSize, pageNumber, filter, sorted);
             return authors.Select(e => _mapper.Map<Author>(e));
         }
 

@@ -1,8 +1,8 @@
-using BusinessLayerLibrary.Services;
 using BusinessLayerLibrary.Services.Implementation;
+using BusinessLayerLibrary.Services.Interfaces;
 using DataLayerLibrary;
-using DataLayerLibrary.Services;
 using DataLayerLibrary.Services.Implementation;
+using DataLayerLibrary.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

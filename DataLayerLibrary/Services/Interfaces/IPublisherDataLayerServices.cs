@@ -1,25 +1,27 @@
-﻿using DataLayerLibrary.Model;
-using System;
+﻿
+
+using DataLayerLibrary.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.Services
+namespace DataLayerLibrary.Services.Interfaces
 {
-    public interface IPublisherBusinessLayer
+    /// <summary>
+    /// Сервис издательства в в дата слое
+    /// </summary>
+    public interface IPublisherDataLayerServices
     {
         /// <summary>
-        /// Метод получения списка всех издателей.
+        /// Метод получения списка всех издателей. С пагинацией сортировкой и фильтрацией
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Publisher>> GetAllPublishers();
+        Task<IEnumerable<Publisher>> GetAllPublishersModifie(int pageSize, int pageNumber, string filter, string sorted);
 
         /// <summary>
         /// Метод для добавления издателя.
         /// </summary>
-        /// <param name="book">Издатель.</param>
-        Task<Publisher> CreatePublisher(Publisher publisher);
+        /// <param name="publisher">Издатель.</param>
+        Task CreatePublisher(Publisher  publisher);
 
         /// <summary>
         /// Метод для получения издателя.
@@ -32,6 +34,6 @@ namespace BusinessLayerLibrary.Services
         /// Метод для удаления издателя.
         /// </summary>
         /// <param name="id">Идентификатор издателя.</param>
-        Task<bool> DeletePublisher(int id);
+        Task DeletePublisher(int id);
     }
 }

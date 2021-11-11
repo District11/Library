@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Services
+namespace DataLayerLibrary.Services.Interfaces
 {
+    /// <summary>
+    /// Сервис автора в дата слое
+    /// </summary>
     public interface IAuthorDataLayerServices
     {
         /// <summary>
         /// Метод получения списка всех авторов.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Author>> GetAllAuthors();
+        Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted);
 
         /// <summary>
         /// Метод для добавления автора.

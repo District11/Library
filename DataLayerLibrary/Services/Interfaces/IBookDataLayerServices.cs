@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataLayerLibrary.Services
+namespace DataLayerLibrary.Services.Interfaces
 {
     /// <summary>
-    /// Сервис для книги.
+    /// Сервис для книги в дата слое.
     /// </summary>
     public interface IBookDataLayerServices
     {
@@ -13,7 +13,7 @@ namespace DataLayerLibrary.Services
         /// Метод получения списка всех книнг.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Book>> GetAllBooks(int pageSizeint, int pageNumber);
+        Task<IEnumerable<Book>> GetAllBooks(int pageSizeint, int pageNumber, string filter, string sorted);
 
         /// <summary>
         /// Метод для добавления книги.

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataLayerLibrary.Model
 {
     /// <summary>
-    /// Модель издателя.
+    /// Модель издательства.
     /// </summary>
     public class Publisher
     {
@@ -25,5 +26,20 @@ namespace DataLayerLibrary.Model
         /// Город.
         /// </summary>
         public string City { get; set; }
+
+        /// <summary>
+        /// Выражение для сортироки издательства по полям
+        /// </summary>
+        /// <param name="sortBy">Параметр сортировки</param>
+        /// <returns></returns>
+        public static Expression<Func<Publisher, object>> GetSortExpressions(string sortBy)
+        {
+            return sortBy?.ToLower() switch
+            {
+                "name" => p => p.Name,
+                "сity" => p => p.City,
+                _ => p => p.Id
+            };
+        }
     }
 }

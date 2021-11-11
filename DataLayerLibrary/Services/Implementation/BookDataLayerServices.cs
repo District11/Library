@@ -1,9 +1,10 @@
 ﻿using DataLayerLibrary.Model;
+using DataLayerLibrary.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace DataLayerLibrary.Services.Implementation
@@ -41,10 +42,28 @@ namespace DataLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber)
+        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber, string filter, string sorted)
         {
-            return await _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
-                .Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+            var sortmethod = Book.GetSortExpressions(sorted);
+            if (filter == null)
+            {
+                return await _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
+               .Skip((pageNumber - 1) * pageSize)
+               .Take(pageSize)
+               .OrderBy(sortmethod)
+               .ToListAsync();
+            }
+            else
+            {
+                return await _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
+                   .Where(t => t.Name.Contains(filter) ||t.Publisher.City.Contains(filter) 
+                   || t.Authors.Any(a => a.LastName.Contains(filter)) || t.Authors.Any(a =>a.MiddleName.Contains(filter))
+                   || t.Authors.Any(a => a.Name.Contains(filter))) 
+                   .Skip((pageNumber - 1) * pageSize)
+                   .Take(pageSize)
+                   .OrderBy(sortmethod)
+                   .ToListAsync();
+            }
         }
 
 

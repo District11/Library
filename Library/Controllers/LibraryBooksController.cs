@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BusinessLayerLibrary.Services;
+using BusinessLayerLibrary.Services.Interfaces;
 using DataLayerLibrary.Model;
 using Library.DtoModel;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +20,9 @@ namespace Library.Controllers
         }
 
         [HttpGet("/api/books")]
-        public async Task<ActionResult> GetAllBooks(int pageSize, int pageNumber)
+        public async Task<ActionResult> GetAllBooks(int pageSize, int pageNumber, string filter, string sorted)
         {
-            var books = await _bookServices.GetAllBooks(pageSize, pageNumber);
+            var books = await _bookServices.GetAllBooks(pageSize, pageNumber, filter, sorted);
             return Ok(books);
         }
 

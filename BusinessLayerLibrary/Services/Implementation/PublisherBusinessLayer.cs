@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
+using BusinessLayerLibrary.Services.Interfaces;
 using DataLayerLibrary.Model;
-using DataLayerLibrary.Services;
-using System;
+using DataLayerLibrary.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary.Services.Implementation
@@ -41,9 +40,13 @@ namespace BusinessLayerLibrary.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Publisher>> GetAllPublishers()
+        public async Task<IEnumerable<Publisher>> GetAllPublishers(int pageSize, int pageNumber, string filter, string sorted)
         {
-            var publisher = await _publisherDataLayerServices.GetAllPublishers();
+            if(pageSize<1 || pageNumber < 1)
+            {
+                return null;
+            }
+            var publisher = await _publisherDataLayerServices.GetAllPublishersModifie(pageSize, pageNumber, filter, sorted);
             return publisher.Select(p => _mapper.Map<Publisher>(p));
         }
 

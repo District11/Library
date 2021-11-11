@@ -1,23 +1,23 @@
-﻿
-using DataLayerLibrary.Model;
-using System;
+﻿using DataLayerLibrary.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayerLibrary.Services
+namespace BusinessLayerLibrary.Services.Interfaces
 {
     /// <summary>
-    /// Сервис для книги.
+    /// Сервис для книги в бизнес слое.
     /// </summary>
     public interface IBookBusinessLayerServices
     {
         /// <summary>
-        /// Метод получения списка всех книнг
+        /// Метод получения списка всех книнг.
         /// </summary>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="pageNumber">Номер страницы</param>
+        /// <param name="filter">Параметр фильтра</param>
+        /// <param name="sorted">Параметр сортировки</param>
         /// <returns></returns>
-        Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber);
+        Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber, string filter, string sorted);
 
         /// <summary>
         /// Метод для добавления книги.
