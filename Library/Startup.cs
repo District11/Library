@@ -1,16 +1,15 @@
+using BusinessLayerLibrary.Services.Implementation;
+using BusinessLayerLibrary.Services.Interfaces;
+using DataLayerLibrary;
+using DataLayerLibrary.Services.Implementation;
+using DataLayerLibrary.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library
 {
@@ -26,12 +25,22 @@ namespace Library
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddAutoMapper(typeof(Startup));
+            services.AddDbContext<LibraryDBContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library", Version = "v1" });
             });
+            services.AddScoped<IPublisherBusinessLayer, PublisherBusinessLayer>();
+            services.AddScoped<IPublisherDataLayerServices, PublisherDataLayerServices>();
+            services.AddScoped<IAuthorBussinessLayer,AuthorBusinessLayer>();
+            services.AddScoped<IAuthorDataLayerServices,AuthorDataLayerServices>();
+            services.AddScoped<IBookBusinessLayerServices, BookBusinessLayerServices>();
+            services.AddScoped<IBookDataLayerServices, BookDataLayerServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
