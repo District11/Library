@@ -41,6 +41,7 @@ namespace Library
             services.AddScoped<IAuthorDataLayerServices,AuthorDataLayerServices>();
             services.AddScoped<IBookBusinessLayerServices, BookBusinessLayerServices>();
             services.AddScoped<IBookDataLayerServices, BookDataLayerServices>();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +56,8 @@ namespace Library
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -62,6 +65,9 @@ namespace Library
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

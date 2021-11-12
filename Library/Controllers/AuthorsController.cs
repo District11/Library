@@ -21,7 +21,7 @@ namespace Library.Controllers
 
 
         [HttpGet("/api/authors")]
-        public async Task<ActionResult> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted)
+        public async Task<IActionResult> GetAllAuthors(int pageSize, int pageNumber, string filter, string sorted)
         {
             var listAuthors = await _authorBussinessLayer.GetAllAuthors(pageSize, pageNumber, filter, sorted);
             return Ok(listAuthors);
@@ -29,21 +29,21 @@ namespace Library.Controllers
 
 
         [HttpGet("/api/author/{id}")]
-        public async Task<ActionResult> GetAuthor(int id)
+        public async Task<IActionResult> GetAuthor(int id)
         {
             var authors = await _authorBussinessLayer.GetAuthor(id);
             return Ok(authors);
         }
 
         [HttpDelete("/api/author/{id}")]
-        public async Task<ActionResult> DeleteAuthor(int id)
+        public async Task<IActionResult> DeleteAuthor(int id)
         {
             var deletedAuthor = await _authorBussinessLayer.DeleteAuthor(id);
             return Ok(deletedAuthor);
         }
 
         [HttpPost("/api/author")]
-        public async Task<ActionResult> CreateAuthor([FromBody] AuthorRequest authorRequest)
+        public async Task<IActionResult> CreateAuthor([FromBody] AuthorRequest authorRequest)
         {
             var model = _mapper.Map<Author>(authorRequest);
             var author = await _authorBussinessLayer.CreateAuthor(model);

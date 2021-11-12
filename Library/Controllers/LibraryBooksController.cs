@@ -20,21 +20,21 @@ namespace Library.Controllers
         }
 
         [HttpGet("/api/books")]
-        public async Task<ActionResult> GetAllBooks(int pageSize, int pageNumber, string filter, string sorted)
+        public async Task<IActionResult> GetAllBooks(string filter, string sorted, int pageSize = 10, int pageNumber = 1)
         {
             var books = await _bookServices.GetAllBooks(pageSize, pageNumber, filter, sorted);
             return Ok(books);
         }
 
         [HttpGet("/api/book/{id}")]
-        public async Task<ActionResult> GetBook(int id)
+        public async Task<IActionResult> GetBook(int id)
         {
            var book = await _bookServices.GetBook(id);
             return Ok(book);
         }
 
         [HttpDelete("/api/book/{id}")]
-        public async Task<ActionResult> DeleteBook(int id)
+        public async Task<IActionResult> DeleteBook(int id)
         {
             await _bookServices.DeleteBook(id);
             return Ok();
@@ -42,7 +42,7 @@ namespace Library.Controllers
         
 
         [HttpPost("/api/book")]
-        public async Task<ActionResult> CreateBook([FromBody]BookRequest book)
+        public async Task<IActionResult> CreateBook([FromBody]BookRequest book)
         {
            var model = _mapper.Map<Book>(book);
            var newBook = await _bookServices.CreateBook(model);

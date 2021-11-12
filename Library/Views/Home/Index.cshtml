@@ -1,0 +1,42 @@
+﻿<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<html>
+<head>
+    Ajax запрос
+</head>
+<body>
+    <div id="receipts">
+        <table>
+            <tr>
+                <td>Наименование книг</td>
+                <td>Авторы</td>
+                <td>Издатель</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            method: 'GET',
+            url: 'https://localhost:44364/api/books',
+            contentTypre: 'application/json',
+            success: function (receipts) {
+                $(receipts).each(function (index, item) {
+                    console.log(item);
+                    $('#receipts tbody').append(
+                        '<tr>< td > ' + item.index +
+                        '</td ><td>' + item.name +
+                        '</td><td>' + item.authors[0].lastName +
+                        '</td><td>' + item.publisher.name +
+                        '</td></tr>');
+                })
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+    })
+</script>

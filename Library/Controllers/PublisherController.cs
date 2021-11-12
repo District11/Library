@@ -21,21 +21,21 @@ namespace Library.Controllers
 
 
         [HttpGet("/api/publishers")]
-        public async Task<ActionResult> GetAllPublishers(int pageSize, int pageNumber, string filter, string sorted)
+        public async Task<IActionResult> GetAllPublishers(int pageSize, int pageNumber, string filter, string sorted)
         {
             var listpublishers = await _publisherBusinessLayer.GetAllPublishers(pageSize, pageNumber, filter, sorted);
             return Ok(listpublishers);
         }
 
         [HttpGet("/api/publisher/{id}")]
-        public async Task<ActionResult> GetPublisher(int id)
+        public async Task<IActionResult> GetPublisher(int id)
         {
             var author = await _publisherBusinessLayer.GetPublisher(id);
             return Ok(author);
         }
 
         [HttpDelete("/api/publisher/{id}")]
-        public async Task<ActionResult> DeletePublisher(int id)
+        public async Task<IActionResult> DeletePublisher(int id)
         {
            await _publisherBusinessLayer.DeletePublisher(id);
            return Ok($"Пользователь с id: {id} удалён.");
@@ -43,7 +43,7 @@ namespace Library.Controllers
 
 
         [HttpPost("/api/publisher")]
-        public async Task<ActionResult> CreatePublishers([FromBody]PublisherDto publisherdto)
+        public async Task<IActionResult> CreatePublishers([FromBody]PublisherDto publisherdto)
         {
             var model = _mapper.Map<Publisher>(publisherdto);
             var publisher = await _publisherBusinessLayer.CreatePublisher(model);
