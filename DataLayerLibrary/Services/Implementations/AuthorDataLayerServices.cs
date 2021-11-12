@@ -38,25 +38,18 @@ namespace DataLayerLibrary.Services.Implementations
             }
         }
 
-        public Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sort)
+        public async Task<IEnumerable<Author>> GetAllAuthors(int pageSize, int pageNumber, string filter, string sort)
         {
             var sortmethod = Author.GetSortExpressions(sort);
 
-            var queery = _libraryDBContext.Authors
-                .OrderBy(sortmethod)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize);
+            var queery = _libraryDBContext.Authors.AsQueryable();
 
             if (filter != null)
             {
-                queery = _libraryDBContext.Authors
-                    .Where(t => t.LastName.Contains(filter) || t.MiddleName.Contains(filter) || t.Name.Contains(filter))
-                    .OrderBy(sortmethod)
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize);
+                queery = _libraryDBContext.Authors.Where(t => t.LastName.Contains(filter) || t.MiddleName.Contains(filter) || t.Name.Contains(filter));
             }
 
-            return Task.FromResult(queery.AsEnumerable());
+            return queery.OrderBy(sortmethod).Skip((pageNumber - 1) * pageSize).Take(pageSize); 
         }
 
         public async Task<Author> GetAuthor(int id)

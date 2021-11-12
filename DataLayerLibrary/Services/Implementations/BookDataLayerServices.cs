@@ -41,24 +41,21 @@ namespace DataLayerLibrary.Services.Implementations
             }
         }
 
-        public Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber, string filter, string sort)
+        public async Task<IEnumerable<Book>> GetAllBooks(int pageSize, int pageNumber, string filter, string sort)
         {
             var sortmethod = Book.GetSortExpressions(sort);
 
-            var queery = _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher)
-                .OrderBy(sortmethod)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize);
+            var queery = _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher).AsQueryable();
 
             if (filter != null)
             {
                 queery = _libraryDBContext.Books.Include(p => p.Authors).Include(p => p.Publisher).Where(t => t.Name.Contains(filter)
                 || t.Publisher.City.Contains(filter)
-                || t.Authors.Any(a => a.LastName.Contains(filter)) || t.Authors.Any(a => a.MiddleName.Contains(filter))
-                || t.Authors.Any(a => a.Name.Contains(filter))).OrderBy(sortmethod).Skip((pageNumber - 1) * pageSize).Take(pageSize);
+                || t.Authors.Any(a => a.LastName.Contains(filter))
+                || t.Authors.Any(a => a.MiddleName.Contains(filter))
+                || t.Authors.Any(a => a.Name.Contains(filter)));
             }
-
-            return Task.FromResult(queery.AsEnumerable());
+            return  queery.OrderBy(sortmethod).Skip((pageNumber - 1) * pageSize).Take(pageSize);
         }
 
 

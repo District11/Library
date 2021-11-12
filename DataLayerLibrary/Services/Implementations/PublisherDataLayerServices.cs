@@ -37,25 +37,19 @@ namespace DataLayerLibrary.Services.Implementations
             }
         }
 
-        public Task<IEnumerable<Publisher>> GetAllPublishersModifie(int pageSize, int pageNumber, string filter, string sort)
+        public async Task<IEnumerable<Publisher>> GetAllPublishersModifie(int pageSize, int pageNumber, string filter, string sort)
         {
             var sortmethod = Publisher.GetSortExpressions(sort);
 
-            var queery = _libraryDBContext.Publishers
-                .OrderBy(sortmethod)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize);
+            var queery = _libraryDBContext.Publishers.AsQueryable();//OrderBy(sortmethod).Skip((pageNumber - 1) * pageSize).Take(pageSize);
 
-            if (filter != null)
+            if (!string.IsNullOrEmpty(filter))
             {
                 queery = _libraryDBContext.Publishers
-                    .Where(t => t.Name.Contains(filter) || t.City.Contains(filter))
-                    .OrderBy(sortmethod)
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize);
+                    .Where(t => t.Name.Contains(filter) || t.City.Contains(filter));
             }
 
-            return Task.FromResult(queery.AsEnumerable());
+            return queery.OrderBy(sortmethod).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
 
         public Task<Publisher> GetPublisher(int id)
