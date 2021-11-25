@@ -13,6 +13,7 @@ namespace BusinessLayerLibrary.Services.Implementations
         private readonly IPublisherDataLayerServices _publisherDataLayerServices;
         private readonly IMapper _mapper;
 
+        
         public PublisherBusinessLayer(IPublisherDataLayerServices publisherDataLayerServices, IMapper mapper)
         {
             _publisherDataLayerServices = publisherDataLayerServices;

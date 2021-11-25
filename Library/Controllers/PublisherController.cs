@@ -23,8 +23,8 @@ namespace Library.Controllers
         [HttpGet("/api/publishers")]
         public async Task<IActionResult> GetAllPublishers(int pageSize, int pageNumber, string filter, string sorted)
         {
-            var listpublishers = await _publisherBusinessLayer.GetAllPublishers(pageSize, pageNumber, filter, sorted);
-            return Ok(listpublishers);
+            // var listpublishers = await _publisherBusinessLayer.GetAllPublishers(pageSize, pageNumber, filter, sorted);
+            // return Ok(listpublishers);
         }
 
         [HttpGet("/api/publisher/{id}")]
@@ -47,7 +47,7 @@ namespace Library.Controllers
         {
             var model = _mapper.Map<Publisher>(publisherdto);
             var publisher = await _publisherBusinessLayer.CreatePublisher(model);
-            return Ok(publisher);
+            return ApiResult.Success(publisher.Id);
         }
 
     }
